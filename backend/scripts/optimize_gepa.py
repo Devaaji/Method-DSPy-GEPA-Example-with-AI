@@ -93,7 +93,7 @@ def build_examples():
 def main():
     api_key = os.getenv("KIMI_API_KEY")
     base_url = os.getenv("KIMI_BASE_URL", "https://api.moonshot.ai/v1")
-    model = os.getenv("KIMI_MODEL", "k.2.5")
+    model = os.getenv("KIMI_MODEL", "kimi-2.5")
 
     if not api_key:
         raise SystemExit("KIMI_API_KEY is missing. Add it to backend/.env first.")

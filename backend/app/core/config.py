@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     kimi_api_key: str = Field(default="", alias="KIMI_API_KEY")
     kimi_base_url: str = Field(default="https://api.moonshot.ai/v1", alias="KIMI_BASE_URL")
-    kimi_model: str = Field(default="k.2.5", alias="KIMI_MODEL")
+    kimi_model: str = Field(default="kimi-2.5", alias="KIMI_MODEL")
 
     request_timeout_seconds: int = 120
 
