@@ -22,7 +22,7 @@ const initialForm: FormState = {
   tone: "professional",
   audience: "software developers and startup founders",
   language: "English",
-  count: 3,
+  count: 1,
   include_hashtags: true,
   max_chars: 280,
 };

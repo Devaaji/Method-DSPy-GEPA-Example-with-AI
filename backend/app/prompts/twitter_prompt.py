@@ -57,9 +57,15 @@ def build_user_prompt(payload: TwitterGenerateRequest) -> str:
         if payload.include_hashtags
         else "Do not include hashtags."
     )
+    draft_noun = "draft" if payload.count == 1 else "drafts"
+    output_format = (
+        "Output format:\nTweet 1: ..."
+        if payload.count == 1
+        else "Output format:\nTweet 1: ...\nTweet 2: ...\nTweet 3: ..."
+    )
 
     return f"""
-Generate {payload.count} X/Twitter post drafts.
+Generate {payload.count} X/Twitter post {draft_noun}.
 
 Topic:
 {payload.topic}
@@ -79,10 +85,7 @@ Maximum {payload.max_chars} characters per tweet.
 Hashtag instruction:
 {hashtag_instruction}
 
-Output format:
-Tweet 1: ...
-Tweet 2: ...
-Tweet 3: ...
+{output_format}
 
 Only return the tweet drafts. Do not explain your reasoning.
 """.strip()

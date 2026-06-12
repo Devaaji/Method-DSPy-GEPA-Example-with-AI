@@ -7,7 +7,7 @@ class TwitterGenerateRequest(BaseModel):
     tone: Literal["professional", "casual", "bold", "friendly", "educational"] = "professional"
     audience: str = Field(default="startup founders and builders", max_length=200)
     language: Literal["English", "Indonesian"] = "English"
-    count: int = Field(default=3, ge=1, le=5)
+    count: int = Field(default=1, ge=1, le=5)
     include_hashtags: bool = True
     max_chars: int = Field(default=280, ge=120, le=280)
 
