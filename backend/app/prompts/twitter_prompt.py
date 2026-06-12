@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 from app.models.twitter import TwitterGenerateRequest
 
@@ -26,20 +27,50 @@ Rules:
 """.strip()
 
 
-def load_optimized_prompt() -> str | None:
-    """Load a GEPA/DSPy optimized prompt if optimize_gepa.py has produced one."""
+def load_optimized_prompt_data() -> dict[str, Any] | None:
+    """Load the GEPA/DSPy optimization artifact if it exists and is valid."""
     if not OPTIMIZED_PROMPT_FILE.exists():
         return None
 
     try:
         data = json.loads(OPTIMIZED_PROMPT_FILE.read_text(encoding="utf-8"))
-        prompt = data.get("system_prompt")
-        if isinstance(prompt, str) and prompt.strip():
-            return prompt.strip()
+        if isinstance(data, dict):
+            prompt = data.get("system_prompt")
+            if isinstance(prompt, str) and prompt.strip():
+                return data
     except Exception:
         return None
 
     return None
+
+
+def load_optimized_prompt() -> str | None:
+    artifact = load_optimized_prompt_data()
+    if artifact is None:
+        return None
+
+    prompt = artifact.get("system_prompt")
+    if isinstance(prompt, str) and prompt.strip():
+        return prompt.strip()
+
+    return None
+
+
+def get_prompt_metadata() -> dict[str, str]:
+    artifact = load_optimized_prompt_data()
+    if artifact is None:
+        return {"prompt_mode": "default", "prompt_source": "built_in"}
+
+    source = artifact.get("source")
+    generated_at = artifact.get("generated_at")
+    model = artifact.get("model")
+
+    return {
+        "prompt_mode": "optimized",
+        "prompt_source": str(source or "optimized_prompt.json"),
+        "prompt_generated_at": str(generated_at or "unknown"),
+        "prompt_model": str(model or "unknown"),
+    }
 
 
 def build_system_prompt() -> str:
