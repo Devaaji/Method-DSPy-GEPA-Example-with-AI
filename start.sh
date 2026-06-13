@@ -7,18 +7,10 @@ FRONTEND_DIR="$ROOT_DIR/frontend"
 BACKEND_PORT="${BACKEND_PORT:-8001}"
 FRONTEND_PORT="${FRONTEND_PORT:-3001}"
 
-cleanup() {
-  echo ""
-  echo "==> Stopping servers..."
-  if [ -n "${BACKEND_PID:-}" ]; then kill "$BACKEND_PID" 2>/dev/null || true; fi
-  if [ -n "${FRONTEND_PID:-}" ]; then kill "$FRONTEND_PID" 2>/dev/null || true; fi
-}
-trap cleanup EXIT INT TERM
-
 cd "$BACKEND_DIR"
 
 if [ ! -f ".env" ]; then
-  echo "backend/.env not found. Run ./install.sh first, then add your KIMI_API_KEY."
+  echo "backend/.env not found. Run ./install.sh first, then configure your provider settings."
   exit 1
 fi
 
@@ -37,30 +29,38 @@ else
   exit 1
 fi
 
-echo "==> Starting FastAPI backend on http://localhost:${BACKEND_PORT}"
-FRONTEND_URL="http://localhost:${FRONTEND_PORT}" "$VENV_PYTHON" -m uvicorn app.main:app --reload --host 0.0.0.0 --port "$BACKEND_PORT" &
-BACKEND_PID=$!
-
 cd "$FRONTEND_DIR"
 
 if [ -f ".next/dev/lock" ]; then
   LOCK_PID="$(sed -n 's/.*"pid":\([0-9][0-9]*\).*/\1/p' .next/dev/lock | head -n 1)"
-  if [ -n "${LOCK_PID:-}" ] && ! cmd.exe /C "tasklist /FI \"PID eq ${LOCK_PID}\" | findstr ${LOCK_PID}" >/dev/null 2>&1; then
-    rm -f .next/dev/lock
+  if [ -n "${LOCK_PID:-}" ] && command -v cmd.exe >/dev/null 2>&1; then
+    if ! cmd.exe /C "tasklist /FI \"PID eq ${LOCK_PID}\" | findstr ${LOCK_PID}" >/dev/null 2>&1; then
+      rm -f .next/dev/lock
+    fi
   fi
 fi
 
-echo "==> Starting Next.js frontend on http://localhost:${FRONTEND_PORT}"
-if [ -f "node_modules/next/dist/bin/next" ]; then
-  node "node_modules/next/dist/bin/next" dev --hostname 0.0.0.0 --port "$FRONTEND_PORT" &
+cd "$ROOT_DIR"
+
+if command -v concurrently >/dev/null 2>&1; then
+  CONCURRENTLY_CMD="concurrently"
+elif [ -x "$ROOT_DIR/frontend/node_modules/.bin/concurrently" ]; then
+  CONCURRENTLY_CMD="$ROOT_DIR/frontend/node_modules/.bin/concurrently"
 else
-  npm run dev -- --hostname 0.0.0.0 --port "$FRONTEND_PORT" &
+  echo "concurrently not found."
+  echo "Install it first with one of these:"
+  echo "  npm install -g concurrently"
+  echo "  cd frontend && npm install --save-dev concurrently"
+  exit 1
 fi
-FRONTEND_PID=$!
 
-echo ""
-echo "==> Open http://localhost:${FRONTEND_PORT}"
-echo "==> Backend docs http://localhost:${BACKEND_PORT}/docs"
-echo "Press Ctrl+C to stop both servers."
+echo "Starting all services..."
+echo "Frontend: http://localhost:${FRONTEND_PORT}"
+echo "Backend docs: http://localhost:${BACKEND_PORT}/docs"
 
-wait
+"$CONCURRENTLY_CMD" \
+  --prefix "[{name}]" \
+  --names "backend,frontend" \
+  --prefix-colors "yellow,green" \
+  "cd \"$BACKEND_DIR\" && FRONTEND_URL=http://localhost:${FRONTEND_PORT} \"$VENV_PYTHON\" -m uvicorn app.main:app --reload --host 0.0.0.0 --port \"$BACKEND_PORT\"" \
+  "cd \"$FRONTEND_DIR\" && npm run dev -- --hostname 0.0.0.0 --port \"$FRONTEND_PORT\""

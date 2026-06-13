@@ -3,7 +3,7 @@
 This file is intentionally separated from the runtime SSE service.
 DSPy + GEPA is mainly for optimizing prompt/program quality offline.
 The SSE endpoint uses the optimized prompt artifact if it exists, then streams
-with the OpenAI-compatible Kimi client.
+with the selected OpenAI-compatible provider client.
 """
 
 from __future__ import annotations

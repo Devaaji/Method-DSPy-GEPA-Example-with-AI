@@ -1,7 +1,7 @@
 """Optional offline DSPy + GEPA prompt optimizer.
 
 Run this only after the normal SSE app is working.
-It will call your configured Kimi model several times, so it may consume credits.
+It will call your configured provider model several times, so it may consume credits.
 
 Output:
 - app/prompts/optimized_prompt.json
@@ -36,6 +36,7 @@ except Exception as exc:
     )
 
 from app.prompts.twitter_dspy_program import TwitterContentProgram, twitter_quality_metric
+from app.core.config import get_settings
 
 
 def build_examples():
@@ -142,12 +143,17 @@ Return only final tweet drafts. Do not include reasoning or commentary.
 
 
 def main():
-    api_key = os.getenv("KIMI_API_KEY")
-    base_url = os.getenv("KIMI_BASE_URL", "https://api.groq.com/openai/v1")
-    model = os.getenv("KIMI_MODEL", "openai/gpt-oss-120b")
+    settings = get_settings()
+    provider_name = settings.ai_provider
+    api_key = settings.provider_api_key(provider_name)
+    base_url = settings.provider_base_url(provider_name)
+    model = settings.provider_model(provider_name)
 
     if not api_key:
-        raise SystemExit("KIMI_API_KEY is missing. Add it to backend/.env first.")
+        raise SystemExit(
+            f"{provider_name.upper()}_API_KEY is missing for the selected provider. "
+            "Add it to backend/.env first."
+        )
 
     dspy_model = resolve_dspy_model_name(model)
 
@@ -174,6 +180,7 @@ def main():
         reflection_lm=lm,
     )
 
+    print(f"==> Provider: {provider_name}")
     print(f"==> Provider base URL: {base_url}")
     print(f"==> Runtime model env: {model}")
     print(f"==> DSPy model route: {dspy_model}")

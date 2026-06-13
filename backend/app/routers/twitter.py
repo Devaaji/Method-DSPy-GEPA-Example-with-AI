@@ -7,6 +7,7 @@ from app.core.config import get_settings
 from app.core.logging import get_logger
 from app.core.sse import sse_event
 from app.models.twitter import TwitterGenerateRequest, TwitterSessionResponse
+from app.providers.errors import ProviderError
 from app.services.session_store import session_store
 from app.services.twitter_generator import TwitterContentGenerator
 
@@ -21,10 +22,13 @@ def create_twitter_generation_session(payload: TwitterGenerateRequest):
     EventSource is GET-only in the browser. This endpoint accepts the larger
     POST body first, then the frontend opens GET /sse/{session_id}.
     """
+    settings = get_settings()
+    requested_provider = payload.provider or settings.ai_provider
     session_id = session_store.create(payload)
     logger.info(
-        "session_created session_id=%s topic=%r tone=%s audience=%r language=%s count=%s max_chars=%s hashtags=%s",
+        "session_created session_id=%s provider=%s topic=%r tone=%s audience=%r language=%s count=%s max_chars=%s hashtags=%s",
         session_id,
+        requested_provider,
         payload.topic[:80],
         payload.tone,
         payload.audience[:80],
@@ -53,20 +57,28 @@ def stream_twitter_content(session_id: str, request: Request):
         started_at = perf_counter()
         first_token_at: float | None = None
         token_count = 0
+        generator = TwitterContentGenerator(settings)
+        provider = generator.build_provider(payload)
+        provider_info = provider.describe()
         try:
-            logger.info("sse_started session_id=%s model=%s", session_id, settings.kimi_model)
+            logger.info(
+                "sse_started session_id=%s provider=%s model=%s",
+                session_id,
+                provider_info["provider"],
+                provider_info["model"],
+            )
             yield sse_event(
                 "start",
                 {
                     "message": "Twitter content generation started",
-                    "model": settings.kimi_model,
+                    "provider": provider_info["provider"],
+                    "provider_label": provider_info["provider_label"],
+                    "model": provider_info["model"],
                 },
             )
-
-            generator = TwitterContentGenerator(settings)
             full_text = ""
 
-            for token in generator.stream_generate(payload):
+            for token in generator.stream_generate(payload, provider=provider):
                 token_count += 1
                 if first_token_at is None:
                     first_token_at = perf_counter()
@@ -89,6 +101,9 @@ def stream_twitter_content(session_id: str, request: Request):
             yield sse_event("final", {"content": full_text})
             yield sse_event("done", {"done": True})
 
+        except ProviderError as exc:
+            logger.warning("sse_provider_error session_id=%s error=%s", session_id, exc)
+            yield sse_event("error", {"message": str(exc)})
         except Exception as exc:
             logger.exception("sse_failed session_id=%s error=%s", session_id, exc)
             yield sse_event("error", {"message": str(exc)})

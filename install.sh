@@ -72,5 +72,5 @@ fi
 
 echo ""
 echo "==> Install complete."
-echo "Next step: open backend/.env and paste your KIMI_API_KEY."
+echo "Next step: open backend/.env and configure AI_PROVIDER plus the matching provider credentials."
 echo "Then run: ./start.sh"

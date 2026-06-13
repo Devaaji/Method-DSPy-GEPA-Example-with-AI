@@ -4,9 +4,11 @@ import { FormEvent, useRef, useState } from "react";
 
 type Tone = "professional" | "casual" | "bold" | "friendly" | "educational";
 type Language = "English" | "Indonesian";
+type Provider = "gemini" | "groq" | "ollama";
 
 type FormState = {
   topic: string;
+  provider: Provider;
   tone: Tone;
   audience: string;
   language: Language;
@@ -15,10 +17,11 @@ type FormState = {
   max_chars: number;
 };
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
 
 const initialForm: FormState = {
-  topic: "Build a realtime AI content generator with FastAPI, Next.js, SSE, and Kimi API",
+  topic: "Build a realtime AI content generator with FastAPI, Next.js, SSE, and multiple AI providers",
+  provider: "gemini",
   tone: "professional",
   audience: "software developers and startup founders",
   language: "English",
@@ -80,7 +83,7 @@ export default function Home() {
 
       eventSource.addEventListener("start", (event) => {
         const data = JSON.parse(event.data);
-        setStatus(`Streaming from ${data.model}`);
+        setStatus(`Streaming from ${data.provider_label} (${data.model})`);
       });
 
       eventSource.addEventListener("token", (event) => {
@@ -127,12 +130,13 @@ export default function Home() {
   return (
     <main className="page">
       <section className="hero">
-        <div className="badge">FastAPI + Next.js + SSE + Kimi + DSPy/GEPA</div>
+        <div className="badge">FastAPI + Next.js + SSE + Gemini/Groq/Ollama + DSPy/GEPA</div>
         <h1>Realtime Twitter Content Generator</h1>
         <p>
           This demo sends a POST request to FastAPI, opens an SSE connection with
-          EventSource, and streams Kimi tokens back into the UI in realtime. DSPy
-          + GEPA files are included for offline prompt optimization.
+          EventSource, and streams AI tokens back into the UI in realtime. You can
+          switch between Gemini, Groq, and Ollama from the same interface. DSPy +
+          GEPA files are included for offline prompt optimization.
         </p>
       </section>
 
@@ -150,6 +154,19 @@ export default function Home() {
           </div>
 
           <div className="row">
+            <div className="field">
+              <label htmlFor="provider">Provider</label>
+              <select
+                id="provider"
+                value={form.provider}
+                onChange={(event) => updateForm("provider", event.target.value as Provider)}
+              >
+                <option value="gemini">Gemini</option>
+                <option value="groq">Groq</option>
+                <option value="ollama">Ollama</option>
+              </select>
+            </div>
+
             <div className="field">
               <label htmlFor="tone">Tone</label>
               <select
@@ -234,8 +251,12 @@ export default function Home() {
 
           {error ? <div className="note error-text">{error}</div> : null}
           <div className="note">
-            API URL: {API_URL}. Paste your Kimi token in <code>backend/.env</code>,
-            then run <code>./start.sh</code>.
+            API URL: {API_URL}. Configure <code>AI_PROVIDER</code> and the matching
+            provider keys in <code>backend/.env</code>, then run <code>./start.sh</code>.
+          </div>
+          <div className="note">
+            Ollama runs locally at <code>http://localhost:11434</code>. Make sure Ollama
+            is running and the selected model is already pulled if you choose it.
           </div>
         </form>
 

@@ -24,11 +24,12 @@ app.include_router(health_router)
 app.include_router(twitter_router)
 
 logger.info(
-    "backend_configured app=%s frontend_url=%s provider_base=%s model=%s",
+    "backend_configured app=%s frontend_url=%s default_provider=%s provider_base=%s model=%s",
     settings.app_name,
     settings.frontend_url,
-    settings.kimi_base_url,
-    settings.kimi_model,
+    settings.ai_provider,
+    settings.provider_base_url(),
+    settings.provider_model(),
 )
 
 
