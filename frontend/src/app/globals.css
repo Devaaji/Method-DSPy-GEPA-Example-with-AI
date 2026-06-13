@@ -321,6 +321,20 @@ select:focus {
   width: auto;
 }
 
+.advanced-toggle {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 650;
+}
+
+.compact-note {
+  margin-top: -2px;
+}
+
 .primary-btn {
   border: 0;
   border-radius: 16px;

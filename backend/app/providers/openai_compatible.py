@@ -89,6 +89,50 @@ class OpenAICompatibleProvider:
             if token:
                 yield token
 
+    def complete_chat(self, messages: list[ChatCompletionMessageParam]) -> str:
+        request_started_at = perf_counter()
+        logger.info(
+            "provider_completion_started provider=%s base_url=%s model=%s message_count=%s",
+            self.provider_name,
+            self.base_url,
+            self.model,
+            len(messages),
+        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                stream=False,
+            )
+        except RateLimitError as exc:
+            raise self._normalize_status_error(exc) from exc
+        except APIStatusError as exc:
+            raise self._normalize_status_error(exc) from exc
+        except APIConnectionError as exc:
+            raise self._normalize_connection_error(exc) from exc
+        except APITimeoutError as exc:
+            raise ProviderError(f"{self.display_name} request timed out. Please try again.") from exc
+        except APIError as exc:
+            logger.warning(
+                "provider_api_error provider=%s model=%s error=%s",
+                self.provider_name,
+                self.model,
+                exc,
+            )
+            raise ProviderError(f"{self.display_name} API request failed. Please try again in a moment.") from exc
+
+        logger.info(
+            "provider_completion_finished provider=%s model=%s latency_ms=%d",
+            self.provider_name,
+            self.model,
+            int((perf_counter() - request_started_at) * 1000),
+        )
+        if not response.choices:
+            return ""
+
+        content = response.choices[0].message.content
+        return content if isinstance(content, str) else ""
+
     def describe(self) -> dict[str, str]:
         return {
             "provider": self.provider_name,

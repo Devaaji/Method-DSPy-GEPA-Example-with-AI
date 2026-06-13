@@ -27,7 +27,7 @@ class Settings(BaseSettings):
 
     ollama_api_key: str = Field(default="ollama", alias="OLLAMA_API_KEY")
     ollama_base_url: str = Field(default="http://localhost:11434/v1", alias="OLLAMA_BASE_URL")
-    ollama_model: str = Field(default="llama2", alias="OLLAMA_MODEL")
+    ollama_model: str = Field(default="qwen2.5:3b", alias="OLLAMA_MODEL")
 
     request_timeout_seconds: int = 120
 

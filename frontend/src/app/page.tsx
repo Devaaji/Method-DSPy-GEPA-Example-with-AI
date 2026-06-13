@@ -86,6 +86,7 @@ const initialForm: FormState = {
 
 export default function Home() {
   const [form, setForm] = useState<FormState>(initialForm);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [content, setContent] = useState("");
   const [status, setStatus] = useState("Idle");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -157,12 +158,30 @@ export default function Home() {
     setIsStreaming(true);
 
     try {
+      const payload: Record<string, unknown> = {
+        topic: form.topic,
+        provider: form.provider,
+        language: form.language,
+        count: form.count,
+        include_hashtags: form.include_hashtags,
+        max_chars: form.max_chars,
+      };
+
+      if (showAdvanced) {
+        if (form.tone) {
+          payload.tone = form.tone;
+        }
+        if (form.audience.trim()) {
+          payload.audience = form.audience.trim();
+        }
+      }
+
       const sessionResponse = await fetch(`${API_URL}/api/twitter/sessions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (!sessionResponse.ok) {
@@ -269,21 +288,6 @@ export default function Home() {
             </div>
 
             <div className="field">
-              <label htmlFor="tone">Tone</label>
-              <select
-                id="tone"
-                value={form.tone}
-                onChange={(event) => updateForm("tone", event.target.value as Tone)}
-              >
-                <option value="professional">Professional</option>
-                <option value="casual">Casual</option>
-                <option value="bold">Bold</option>
-                <option value="friendly">Friendly</option>
-                <option value="educational">Educational</option>
-              </select>
-            </div>
-
-            <div className="field">
               <label htmlFor="language">Language</label>
               <select
                 id="language"
@@ -296,15 +300,51 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="field">
-            <label htmlFor="audience">Audience</label>
-            <input
-              id="audience"
-              value={form.audience}
-              onChange={(event) => updateForm("audience", event.target.value)}
-              placeholder="software developers, founders, marketers..."
-            />
-          </div>
+          <button
+            className="advanced-toggle"
+            type="button"
+            onClick={() => setShowAdvanced((prev) => !prev)}
+          >
+            {showAdvanced ? "Hide advanced options" : "Show advanced options"}
+          </button>
+
+          {!showAdvanced ? (
+            <div className="note compact-note">
+              Simple mode keeps <code>tone</code> and <code>audience</code> hidden so the draft
+              feels more natural and follows the brief more closely.
+            </div>
+          ) : null}
+
+          {showAdvanced ? (
+            <>
+              <div className="row">
+                <div className="field">
+                  <label htmlFor="tone">Tone</label>
+                  <select
+                    id="tone"
+                    value={form.tone}
+                    onChange={(event) => updateForm("tone", event.target.value as Tone)}
+                  >
+                    <option value="professional">Professional</option>
+                    <option value="casual">Casual</option>
+                    <option value="bold">Bold</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="educational">Educational</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="field">
+                <label htmlFor="audience">Audience</label>
+                <input
+                  id="audience"
+                  value={form.audience}
+                  onChange={(event) => updateForm("audience", event.target.value)}
+                  placeholder="software developers, founders, marketers..."
+                />
+              </div>
+            </>
+          ) : null}
 
           <div className="row">
             <div className="field">
