@@ -8,6 +8,7 @@ from app.core.logging import get_logger
 from app.core.sse import sse_event
 from app.models.twitter import TwitterGenerateRequest, TwitterSessionResponse
 from app.providers.errors import ProviderError
+from app.services.twitter_cleaner import sanitize_twitter_output
 from app.services.session_store import session_store
 from app.services.twitter_generator import TwitterContentGenerator
 
@@ -90,15 +91,21 @@ def stream_twitter_content(session_id: str, request: Request):
                 full_text += token
                 yield sse_event("token", {"token": token})
 
+            cleaned_text = sanitize_twitter_output(
+                full_text,
+                expected_count=payload.count,
+                include_hashtags=payload.include_hashtags,
+            )
             total_duration_ms = int((perf_counter() - started_at) * 1000)
             logger.info(
-                "sse_completed session_id=%s token_chunks=%s content_chars=%s total_duration_ms=%s",
+                "sse_completed session_id=%s token_chunks=%s content_chars=%s cleaned_chars=%s total_duration_ms=%s",
                 session_id,
                 token_count,
                 len(full_text),
+                len(cleaned_text),
                 total_duration_ms,
             )
-            yield sse_event("final", {"content": full_text})
+            yield sse_event("final", {"content": cleaned_text or full_text})
             yield sse_event("done", {"done": True})
 
         except ProviderError as exc:

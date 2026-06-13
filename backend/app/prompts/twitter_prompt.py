@@ -11,20 +11,29 @@ OPTIMIZED_PROMPT_FILE = PROMPTS_DIR / "optimized_prompt.json"
 
 DEFAULT_SYSTEM_PROMPT = """
 You are a senior social media strategist who writes concise, high-signal posts for X/Twitter.
-Write content that feels human, specific, useful, and not generic.
-Avoid clickbait, exaggerated claims, spammy hashtags, and vague AI buzzwords.
+Write content that feels human, specific, useful, and non-generic.
+Lead with one sharp idea, tension, lesson, or contrarian observation.
+Make each draft feel written for the stated audience, not for everyone.
+Avoid clickbait, exaggerated claims, spammy hashtags, vague AI buzzwords, and generic marketing language.
 Return only the final tweet drafts. Do not include analysis.
 """.strip()
 
 DEFAULT_TWITTER_RULES = """
 Rules:
+- Output exactly the requested number of drafts. No more, no less.
 - Each tweet must be under the requested character limit.
 - Make every tweet standalone.
+- Each tweet should contain one concrete takeaway, opinion, or insight.
+- Mention the audience context or pain point when it helps relevance.
 - Use clear formatting and line breaks only when useful.
 - Do not mention that you are an AI.
 - Do not use more than 2 hashtags per tweet.
 - Avoid emojis unless the tone naturally fits.
 """.strip()
+
+
+def build_default_system_prompt() -> str:
+    return f"{DEFAULT_SYSTEM_PROMPT}\n\n{DEFAULT_TWITTER_RULES}"
 
 
 def load_optimized_prompt_data() -> dict[str, Any] | None:
@@ -44,8 +53,21 @@ def load_optimized_prompt_data() -> dict[str, Any] | None:
     return None
 
 
+def should_use_optimized_prompt(artifact: dict[str, Any] | None) -> bool:
+    if artifact is None:
+        return False
+
+    score_delta = artifact.get("score_delta")
+    if isinstance(score_delta, (int, float)):
+        return float(score_delta) > 0.0
+
+    return True
+
+
 def load_optimized_prompt() -> str | None:
     artifact = load_optimized_prompt_data()
+    if not should_use_optimized_prompt(artifact):
+        return None
     if artifact is None:
         return None
 
@@ -60,6 +82,13 @@ def get_prompt_metadata() -> dict[str, str]:
     artifact = load_optimized_prompt_data()
     if artifact is None:
         return {"prompt_mode": "default", "prompt_source": "built_in"}
+
+    if not should_use_optimized_prompt(artifact):
+        return {
+            "prompt_mode": "default",
+            "prompt_source": "built_in",
+            "prompt_fallback_reason": "optimized_artifact_has_no_score_gain",
+        }
 
     source = artifact.get("source")
     generated_at = artifact.get("generated_at")
@@ -79,7 +108,7 @@ def build_system_prompt() -> str:
     if optimized_prompt:
         return optimized_prompt
 
-    return f"{DEFAULT_SYSTEM_PROMPT}\n\n{DEFAULT_TWITTER_RULES}"
+    return build_default_system_prompt()
 
 
 def build_user_prompt(payload: TwitterGenerateRequest) -> str:
@@ -115,6 +144,13 @@ Maximum {payload.max_chars} characters per tweet.
 
 Hashtag instruction:
 {hashtag_instruction}
+
+Quality requirements:
+- Write exactly {payload.count} draft(s).
+- Start with a clear hook, tension, or concrete insight.
+- Make the draft feel relevant to {payload.audience}.
+- Avoid generic lines like "unlock the power", "game-changing", or "revolutionary".
+- Make each draft useful enough that a real person could post it without editing.
 
 {output_format}
 

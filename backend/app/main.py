@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
 from app.core.logging import configure_logging, get_logger
 from app.routers.health import router as health_router
+from app.routers.optimizer import router as optimizer_router
 from app.routers.twitter import router as twitter_router
 
 configure_logging()
@@ -21,6 +22,7 @@ app.add_middleware(
 )
 
 app.include_router(health_router)
+app.include_router(optimizer_router)
 app.include_router(twitter_router)
 
 logger.info(

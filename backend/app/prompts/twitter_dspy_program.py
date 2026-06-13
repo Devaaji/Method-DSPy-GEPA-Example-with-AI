@@ -9,6 +9,8 @@ with the selected OpenAI-compatible provider client.
 from __future__ import annotations
 from typing import Any
 
+from app.prompts.scoring import evaluate_twitter_output
+
 try:
     import dspy as _dspy
 except Exception:  # pragma: no cover - dspy may be installed later by user
@@ -57,7 +59,7 @@ if dspy is not None:
             )
 
 
-def twitter_quality_metric(example, prediction, trace=None) -> float:
+def twitter_quality_metric(example, prediction, trace=None, pred_name=None, pred_trace=None) -> float:
     """Simple metric for GEPA compile examples.
 
     GEPA needs a metric. This one checks practical Twitter constraints:
@@ -66,27 +68,10 @@ def twitter_quality_metric(example, prediction, trace=None) -> float:
     - relevant topic words appear
     - not too many hashtags
 
+    This signature matches newer DSPy GEPA versions that pass five arguments.
+
     You should replace this with a stronger evaluator for production, e.g.
     brand score, engagement score, duplicate detector, safety check, etc.
     """
-    text = getattr(prediction, "tweets", "") or ""
-    max_chars = int(getattr(example, "max_chars", 280) or 280)
-    topic = str(getattr(example, "topic", ""))
-    topic_keywords = [word.lower() for word in topic.split() if len(word) > 4][:5]
-
-    if not text.strip():
-        return 0.0
-
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-    if not lines:
-        return 0.0
-
-    length_score = sum(1 for line in lines if len(line) <= max_chars) / len(lines)
-    hashtag_score = sum(1 for line in lines if line.count("#") <= 2) / len(lines)
-
-    lower_text = text.lower()
-    relevance_score = 0.5
-    if topic_keywords:
-        relevance_score = sum(1 for word in topic_keywords if word in lower_text) / len(topic_keywords)
-
-    return round((0.45 * length_score) + (0.35 * hashtag_score) + (0.20 * relevance_score), 4)
+    result = evaluate_twitter_output(example, prediction)
+    return float(result["overall_score"])
