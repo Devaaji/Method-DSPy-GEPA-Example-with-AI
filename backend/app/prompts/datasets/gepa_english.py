@@ -310,25 +310,23 @@ ENGLISH_TRAIN_EXAMPLES: list[dict[str, Any]] = [
 
 ENGLISH_VAL_EXAMPLES: list[dict[str, Any]] = [
     {
-        "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
-        "tone": "professional",
-        "audience": "brand marketers",
+        "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
+        "tone": "analytical",
+        "audience": "product marketers",
         "language": "English",
-        "count": 2,
-        "max_chars": 250,
-        "include_hashtags": True,
+        "count": 1,
+        "max_chars": 240,
+        "include_hashtags": False,
         "quality_criteria": ENGLISH_COMMON_QUALITY_CRITERIA + [
-            "Show that AI-assisted writing still needs brand judgment.",
-            "Keep the tone polished but not corporate.",
+            "Connect product updates to user relevance, not just shipping velocity.",
+            "Make the messaging lesson specific for product communication.",
         ],
         "avoid": [
-            "AI hype.",
-            "Saying brand voice can be fully automated.",
-            "More than 2 hashtags.",
+            "Just listing features.",
+            "Internal-team celebration with no customer angle.",
         ],
         "reference_posts": [
-            "Good AI-assisted writing does not erase brand voice. It speeds up the first draft, then the team sharpens the opinion, tone, examples, and boundaries that make the brand recognizable. #BrandVoice",
-            "AI can help write faster, but brand teams still need to decide what the company would never say. Voice is not only style. It is judgment. #AIWriting"
+            "Most changelog posts read like release notes pasted into a feed. People care more when you explain the decision behind the feature: what pain it removes, what trade-off it solves, or what changed for the user."
         ],
     },
     {
@@ -374,25 +372,24 @@ ENGLISH_VAL_EXAMPLES: list[dict[str, Any]] = [
         ],
     },
     {
-        "topic": "What developers should share online if they want to build trust, not just impressions",
+        "topic": "How product teams should talk about failed experiments without sounding defensive",
         "tone": "reflective",
-        "audience": "software developers",
+        "audience": "product leaders",
         "language": "English",
         "count": 2,
-        "max_chars": 260,
-        "include_hashtags": True,
+        "max_chars": 250,
+        "include_hashtags": False,
         "quality_criteria": ENGLISH_COMMON_QUALITY_CRITERIA + [
-            "Encourage useful technical sharing without chasing vanity metrics.",
-            "Make the post feel reflective and grounded.",
+            "Frame failure as learning without sounding weak or self-congratulatory.",
+            "Make the writing useful for teams communicating product decisions publicly.",
         ],
         "avoid": [
-            "Telling developers to become influencers.",
-            "Generic personal branding advice.",
-            "More than 2 hashtags.",
+            "Excuse-making.",
+            "Vague lessons with no concrete takeaway.",
         ],
         "reference_posts": [
-            "Developers build trust by sharing how they think: trade-offs, bugs, debugging notes, architecture choices, and lessons from shipping. Impressions come and go. Clear thinking compounds. #SoftwareEngineering",
-            "You do not need to post hot takes to build trust as a developer. Share what broke, what you learned, and how you would approach it next time. That is more useful than pretending every build was clean. #DevCommunity"
+            "A failed experiment is still valuable if the team can explain what they believed, what they tested, what they learned, and what changed next. The goal is not to defend the miss. The goal is to show the quality of thinking.",
+            "Teams sound defensive when they talk around the result. They sound credible when they name the assumption, the evidence, and the next decision clearly."
         ],
     },
     {

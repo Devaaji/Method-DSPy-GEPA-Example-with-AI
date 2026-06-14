@@ -1,13 +1,13 @@
 {
   "source": "DSPy GEPA optimization",
-  "generated_at": "2026-06-14T07:58:46.733673+00:00",
+  "generated_at": "2026-06-14T08:17:20.714684+00:00",
   "model": "qwen2.5:3b",
   "dspy_model": "openai/qwen2.5:3b",
   "base_url": "http://localhost:11434/v1",
   "trainset_size": 28,
   "valset_size": 10,
-  "baseline_validation_score": 0.7967,
-  "optimized_validation_score": 0.7967,
+  "baseline_validation_score": 0.8027,
+  "optimized_validation_score": 0.8027,
   "score_delta": 0.0,
   "score_weights": {
     "relevance": 0.2,
@@ -45,10 +45,10 @@
     "Why AI-generated content still needs a human point of view",
     "How engineering teams can make internal updates easier to understand",
     "Why polished product launches can still feel forgettable",
-    "What good AI-assisted writing looks like when a team still cares about brand voice",
+    "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
     "Why prompt quality matters more than model switching for many content workflows",
     "How founders can reuse webinar transcripts without sounding repetitive",
-    "What developers should share online if they want to build trust, not just impressions",
+    "How product teams should talk about failed experiments without sounding defensive",
     "Why user-facing AI features need better empty states",
     "Cara founder menjaga konsistensi konten tanpa kehilangan kualitas",
     "Cara tim marketing kecil tetap konsisten posting tanpa burnout",
@@ -67,27 +67,30 @@
     "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
     "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
     "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
-    "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+    "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
     "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi"
   ],
   "baseline_preview": [
     {
-      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
-      "score": 0.7919,
+      "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
+      "score": 0.7829,
       "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 0.923,
+        "hook": 0.766,
+        "clarity": 1.0,
         "relevance": 0.5,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.4167,
+        "reference_fit": 0.25,
         "avoidance": 1.0
       },
       "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
         "The draft needs more concrete specificity to match the quality criteria."
       ],
-      "tweet_count": 2,
-      "tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting"
+      "tweet_count": 1,
+      "tweets": "1. \"When explaining your product updates to product marketers, remember: a changelog post is more impactful when it dives into why you chose this feature and how it benefits the user. #ProductMarketing\""
     },
     {
       "topic": "Why prompt quality matters more than model switching for many content workflows",
@@ -126,20 +129,23 @@
       "tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\""
     },
     {
-      "topic": "What developers should share online if they want to build trust, not just impressions",
-      "score": 0.8752,
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "score": 0.8267,
       "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 0.923,
-        "relevance": 0.875,
+        "hook": 0.766,
+        "clarity": 0.9615,
+        "relevance": 0.75,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.5,
+        "reference_fit": 0.25,
         "avoidance": 1.0
       },
-      "notes": [],
+      "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
       "tweet_count": 2,
-      "tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity"
+      "tweets": "1. \"In discussions about failed experiments, clarity on assumptions & outcomes is key. Focus on what you learned vs. why it didn't work #ProductLeadership\"\n\n2. \"When talking about a failed experiment, the next step is to highlight how understanding led to better decision-making in the future #ExperimentLearning\""
     },
     {
       "topic": "Why user-facing AI features need better empty states",
@@ -217,24 +223,22 @@
       "tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita."
     },
     {
-      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
-      "score": 0.7039,
+      "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
+      "score": 0.8206,
       "aspect_scores": {
         "hook": 0.766,
         "clarity": 0.923,
-        "relevance": 0.2083,
+        "relevance": 0.5417,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.1667,
+        "reference_fit": 0.6667,
         "avoidance": 1.0
       },
       "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
+        "Hashtags appear even though they were disabled."
       ],
       "tweet_count": 2,
-      "tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca."
+      "tweets": "1. \"Jelaskan pilihan produk dengan jujulah dan alasan di baliknya, agar audiens Indonesia lebih mudah memahami keputusan yang diambil. #ProductSavvy\"\n2. \"Tidak perlu terlalu berdebat soal trade-off. Jelaskan saja kenapa pilihan ini masuk akal untuk mayoritas user dan apa konsekuensinya. Kalau termasuk kamu, jujulah aja. #ProductWisdom\""
     },
     {
       "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
@@ -257,22 +261,25 @@
   ],
   "optimized_preview": [
     {
-      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
-      "score": 0.7919,
+      "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
+      "score": 0.7829,
       "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 0.923,
+        "hook": 0.766,
+        "clarity": 1.0,
         "relevance": 0.5,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.4167,
+        "reference_fit": 0.25,
         "avoidance": 1.0
       },
       "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
         "The draft needs more concrete specificity to match the quality criteria."
       ],
-      "tweet_count": 2,
-      "tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting"
+      "tweet_count": 1,
+      "tweets": "1. \"When explaining your product updates to product marketers, remember: a changelog post is more impactful when it dives into why you chose this feature and how it benefits the user. #ProductMarketing\""
     },
     {
       "topic": "Why prompt quality matters more than model switching for many content workflows",
@@ -311,20 +318,23 @@
       "tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\""
     },
     {
-      "topic": "What developers should share online if they want to build trust, not just impressions",
-      "score": 0.8752,
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "score": 0.8267,
       "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 0.923,
-        "relevance": 0.875,
+        "hook": 0.766,
+        "clarity": 0.9615,
+        "relevance": 0.75,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.5,
+        "reference_fit": 0.25,
         "avoidance": 1.0
       },
-      "notes": [],
+      "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
       "tweet_count": 2,
-      "tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity"
+      "tweets": "1. \"In discussions about failed experiments, clarity on assumptions & outcomes is key. Focus on what you learned vs. why it didn't work #ProductLeadership\"\n\n2. \"When talking about a failed experiment, the next step is to highlight how understanding led to better decision-making in the future #ExperimentLearning\""
     },
     {
       "topic": "Why user-facing AI features need better empty states",
@@ -402,24 +412,22 @@
       "tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita."
     },
     {
-      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
-      "score": 0.7039,
+      "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
+      "score": 0.8206,
       "aspect_scores": {
         "hook": 0.766,
         "clarity": 0.923,
-        "relevance": 0.2083,
+        "relevance": 0.5417,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.1667,
+        "reference_fit": 0.6667,
         "avoidance": 1.0
       },
       "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
+        "Hashtags appear even though they were disabled."
       ],
       "tweet_count": 2,
-      "tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca."
+      "tweets": "1. \"Jelaskan pilihan produk dengan jujulah dan alasan di baliknya, agar audiens Indonesia lebih mudah memahami keputusan yang diambil. #ProductSavvy\"\n2. \"Tidak perlu terlalu berdebat soal trade-off. Jelaskan saja kenapa pilihan ini masuk akal untuk mayoritas user dan apa konsekuensinya. Kalau termasuk kamu, jujulah aja. #ProductWisdom\""
     },
     {
       "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
@@ -442,9 +450,9 @@
   ],
   "comparison_preview": [
     {
-      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
-      "baseline_score": 0.7919,
-      "optimized_score": 0.7919,
+      "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
+      "baseline_score": 0.7829,
+      "optimized_score": 0.7829,
       "score_delta": 0.0,
       "aspect_delta": {
         "hook": 0.0,
@@ -457,12 +465,18 @@
       },
       "improved_aspects": [],
       "weaker_aspects": [],
-      "baseline_tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting",
-      "optimized_tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting",
+      "baseline_tweets": "1. \"When explaining your product updates to product marketers, remember: a changelog post is more impactful when it dives into why you chose this feature and how it benefits the user. #ProductMarketing\"",
+      "optimized_tweets": "1. \"When explaining your product updates to product marketers, remember: a changelog post is more impactful when it dives into why you chose this feature and how it benefits the user. #ProductMarketing\"",
       "baseline_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
         "The draft needs more concrete specificity to match the quality criteria."
       ],
       "optimized_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
         "The draft needs more concrete specificity to match the quality criteria."
       ]
     },
@@ -517,9 +531,9 @@
       ]
     },
     {
-      "topic": "What developers should share online if they want to build trust, not just impressions",
-      "baseline_score": 0.8752,
-      "optimized_score": 0.8752,
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "baseline_score": 0.8267,
+      "optimized_score": 0.8267,
       "score_delta": 0.0,
       "aspect_delta": {
         "hook": 0.0,
@@ -532,10 +546,16 @@
       },
       "improved_aspects": [],
       "weaker_aspects": [],
-      "baseline_tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity",
-      "optimized_tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity",
-      "baseline_notes": [],
-      "optimized_notes": []
+      "baseline_tweets": "1. \"In discussions about failed experiments, clarity on assumptions & outcomes is key. Focus on what you learned vs. why it didn't work #ProductLeadership\"\n\n2. \"When talking about a failed experiment, the next step is to highlight how understanding led to better decision-making in the future #ExperimentLearning\"",
+      "optimized_tweets": "1. \"In discussions about failed experiments, clarity on assumptions & outcomes is key. Focus on what you learned vs. why it didn't work #ProductLeadership\"\n\n2. \"When talking about a failed experiment, the next step is to highlight how understanding led to better decision-making in the future #ExperimentLearning\"",
+      "baseline_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "optimized_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ]
     },
     {
       "topic": "Why user-facing AI features need better empty states",
@@ -644,9 +664,9 @@
       ]
     },
     {
-      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
-      "baseline_score": 0.7039,
-      "optimized_score": 0.7039,
+      "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
+      "baseline_score": 0.8206,
+      "optimized_score": 0.8206,
       "score_delta": 0.0,
       "aspect_delta": {
         "hook": 0.0,
@@ -659,17 +679,13 @@
       },
       "improved_aspects": [],
       "weaker_aspects": [],
-      "baseline_tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca.",
-      "optimized_tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca.",
+      "baseline_tweets": "1. \"Jelaskan pilihan produk dengan jujulah dan alasan di baliknya, agar audiens Indonesia lebih mudah memahami keputusan yang diambil. #ProductSavvy\"\n2. \"Tidak perlu terlalu berdebat soal trade-off. Jelaskan saja kenapa pilihan ini masuk akal untuk mayoritas user dan apa konsekuensinya. Kalau termasuk kamu, jujulah aja. #ProductWisdom\"",
+      "optimized_tweets": "1. \"Jelaskan pilihan produk dengan jujulah dan alasan di baliknya, agar audiens Indonesia lebih mudah memahami keputusan yang diambil. #ProductSavvy\"\n2. \"Tidak perlu terlalu berdebat soal trade-off. Jelaskan saja kenapa pilihan ini masuk akal untuk mayoritas user dan apa konsekuensinya. Kalau termasuk kamu, jujulah aja. #ProductWisdom\"",
       "baseline_notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
+        "Hashtags appear even though they were disabled."
       ],
       "optimized_notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
+        "Hashtags appear even though they were disabled."
       ]
     },
     {

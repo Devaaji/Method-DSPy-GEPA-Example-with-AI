@@ -370,24 +370,24 @@ INDONESIAN_VAL_EXAMPLES: list[dict[str, Any]] = [
         ],
     },
     {
-        "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+        "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
         "tone": "professional",
-        "audience": "brand teams Indonesia",
+        "audience": "product teams Indonesia",
         "language": "Indonesian",
         "count": 2,
         "max_chars": 230,
         "include_hashtags": False,
         "quality_criteria": COMMON_QUALITY_CRITERIA + [
-            "Berikan sistem ringan untuk menjaga brand voice.",
-            "Cocok untuk tim, bukan solo creator.",
+            "Jelaskan trade-off dengan jujur dan tenang.",
+            "Tunjukkan bahwa keputusan produk bisa dikomunikasikan tanpa meminta maaf berlebihan.",
         ],
         "avoid": [
-            "Saran terlalu teoritis.",
-            "Membuat proses approval terasa ribet.",
+            "Nada defensif.",
+            "Bahasa terlalu teknis atau internal.",
         ],
         "reference_posts": [
-            "Tone brand konsisten bukan berarti semua orang harus menulis dengan gaya yang sama persis. Yang penting: pilihan kata, batasan humor, cara menjawab kritik, dan cara menjelaskan value tetap selaras.",
-            "Kalau beberapa orang menulis konten, buat voice guide yang praktis: contoh kalimat yang boleh, yang dihindari, dan sebelum-sesudah caption. Lebih berguna daripada dokumen brand 30 halaman.",
+            "Trade-off produk tidak harus dijelaskan seperti pembelaan diri. Jelaskan pilihan yang diambil, kenapa itu masuk akal untuk mayoritas user, dan apa konsekuensinya. Jelas lebih baik daripada berputar-putar.",
+            "Audiens biasanya lebih bisa menerima keputusan yang tidak sempurna kalau kamu jujur soal prioritasnya. Yang bikin defensif terasa buruk bukan keputusan sulitnya, tapi cara menjelaskannya yang kabur.",
         ],
     },
     {
