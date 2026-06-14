@@ -470,7 +470,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="optimizer-layout">
+            <div>
               <div className="card">
                 <h3>Prompt Lama vs Baru</h3>
                 <div className="prompt-panels">
@@ -516,9 +516,9 @@ export default function Home() {
                 ) : null}
               </div>
 
-              <div className="card">
+              <div className="card mt-4">
                 <h3>Aspect Weights</h3>
-                <div className="aspect-list">
+                <div className="aspect-list mt-4">
                   {Object.entries(optimizerArtifact.score_weights).map(([key, value]) => (
                     <div className="aspect-row" key={key}>
                       <div>
@@ -540,10 +540,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="optimizer-layout">
+            <div >
               <div className="card">
                 <h3>Baseline vs Optimized</h3>
-                <div className="comparison-list">
+                <div className="comparison-list mt-4">
                   {optimizerArtifact.comparison_preview.map((comparison) => (
                     <article className="comparison-card" key={comparison.topic}>
                       <div className="comparison-top">
@@ -603,7 +603,7 @@ export default function Home() {
             <div className="optimizer-layout">
               <div className="card">
                 <h3>Baseline Previews</h3>
-                <div className="preview-list">
+                <div className="preview-list mt-4">
                   {optimizerArtifact.baseline_preview.map((preview) => (
                     <article className="preview-card" key={`baseline-${preview.topic}`}>
                       <div className="preview-top">
@@ -625,7 +625,7 @@ export default function Home() {
 
               <div className="card">
                 <h3>Optimized Previews</h3>
-                <div className="preview-list">
+                <div className="preview-list mt-4">
                   {optimizerArtifact.optimized_preview.map((preview) => (
                     <article className="preview-card" key={`optimized-${preview.topic}`}>
                       <div className="preview-top">
