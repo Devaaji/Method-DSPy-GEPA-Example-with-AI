@@ -37,63 +37,9 @@ except Exception as exc:
 
 from app.prompts.twitter_dspy_program import TwitterContentProgram, twitter_quality_metric
 from app.prompts.scoring import evaluate_twitter_output
+from app.prompts.datasets.gepa_examples import build_examples, build_train_val_examples
 from app.prompts.twitter_prompt import build_default_system_prompt
 from app.core.config import get_settings
-
-
-def build_examples():
-    """Small starter dataset. Add your own client/project examples here."""
-    examples = [
-        {
-            "topic": "How AI automation helps founders save time on weekly content planning",
-            "tone": "professional",
-            "audience": "startup founders",
-            "language": "English",
-            "count": 1,
-            "max_chars": 280,
-            "include_hashtags": True,
-        },
-        {
-            "topic": "Why approval workflows matter before auto-publishing social posts",
-            "tone": "educational",
-            "audience": "marketing teams",
-            "language": "English",
-            "count": 1,
-            "max_chars": 280,
-            "include_hashtags": False,
-        },
-        {
-            "topic": "Cara founder menjaga konsistensi konten tanpa kehilangan kualitas",
-            "tone": "friendly",
-            "audience": "founder Indonesia",
-            "language": "Indonesian",
-            "count": 1,
-            "max_chars": 280,
-            "include_hashtags": True,
-        },
-        {
-            "topic": "Building realtime AI streaming UI with FastAPI and Next.js",
-            "tone": "bold",
-            "audience": "software developers",
-            "language": "English",
-            "count": 1,
-            "max_chars": 280,
-            "include_hashtags": True,
-        },
-    ]
-
-    return [
-        dspy.Example(**item).with_inputs(
-            "topic",
-            "tone",
-            "audience",
-            "language",
-            "count",
-            "max_chars",
-            "include_hashtags",
-        )
-        for item in examples
-    ]
 
 
 def resolve_dspy_model_name(model: str) -> str:
@@ -253,9 +199,8 @@ def main():
     )
     dspy.settings.configure(lm=lm)
 
-    dataset = build_examples()
-    trainset = dataset[:3]
-    valset = dataset[3:]
+    dataset = build_examples(dspy)
+    trainset, valset = build_train_val_examples(dspy)
 
     # GEPA is an offline optimizer. Keep max_metric_calls low for this demo.
     # Increase it when you have a better metric + more examples.

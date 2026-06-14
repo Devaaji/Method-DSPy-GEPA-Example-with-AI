@@ -63,4 +63,4 @@ The output includes:
 2. Score it with the script.
 3. Rewrite the weak areas shown in `notes`.
 4. Compare the aspect scores.
-5. Move good examples into `build_examples()` in `backend/scripts/optimize_gepa.py`.
+5. Move good examples into the dataset files under `backend/app/prompts/datasets/`.
