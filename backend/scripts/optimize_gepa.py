@@ -182,6 +182,7 @@ def main():
     base_url = settings.provider_base_url(provider_name)
     model = settings.provider_model(provider_name)
     max_metric_calls = int(os.getenv("GEPA_MAX_METRIC_CALLS", "20"))
+    dspy_num_threads = int(os.getenv("DSPY_NUM_THREADS", "1"))
 
     if not api_key:
         raise SystemExit(
@@ -200,7 +201,9 @@ def main():
         temperature=0.7,
         max_tokens=900,
     )
-    dspy.settings.configure(lm=lm)
+    # GEPA can evaluate candidates in parallel internally. For local Ollama runs,
+    # a single thread is more stable and avoids thread-pool shutdown issues.
+    dspy.settings.configure(lm=lm, num_threads=dspy_num_threads)
 
     dataset = build_examples(dspy)
     trainset, valset = build_train_val_examples(dspy)
@@ -217,6 +220,7 @@ def main():
     print(f"==> Provider base URL: {base_url}")
     print(f"==> Runtime model env: {model}")
     print(f"==> DSPy model route: {dspy_model}")
+    print(f"==> DSPy num threads: {dspy_num_threads}")
     print(f"==> Max metric calls: {max_metric_calls}")
     print(f"==> Train examples: {len(trainset)} | Validation examples: {len(valset)}")
     print("==> Running baseline preview...")

@@ -1,25 +1,27 @@
 {
   "source": "DSPy GEPA optimization",
-  "generated_at": "2026-06-13T11:55:05.253059+00:00",
-  "model": "llama3.2",
-  "dspy_model": "openai/llama3.2",
+  "generated_at": "2026-06-14T07:58:46.733673+00:00",
+  "model": "qwen2.5:3b",
+  "dspy_model": "openai/qwen2.5:3b",
   "base_url": "http://localhost:11434/v1",
-  "trainset_size": 3,
-  "valset_size": 1,
-  "baseline_validation_score": 0.8118,
-  "optimized_validation_score": 0.8118,
+  "trainset_size": 28,
+  "valset_size": 10,
+  "baseline_validation_score": 0.7967,
+  "optimized_validation_score": 0.7967,
   "score_delta": 0.0,
   "score_weights": {
-    "relevance": 0.24,
-    "hook": 0.22,
-    "clarity": 0.2,
-    "naturalness": 0.18,
-    "constraint_fit": 0.16
+    "relevance": 0.2,
+    "hook": 0.18,
+    "clarity": 0.16,
+    "naturalness": 0.15,
+    "constraint_fit": 0.14,
+    "reference_fit": 0.1,
+    "avoidance": 0.07
   },
-  "system_prompt": "You are an optimized X/Twitter content generator for founders, marketers, and software builders.\nPrioritize specificity, usefulness, and clarity. Write natural posts that sound human, not generic.\nFor every request, produce the requested number of standalone tweet drafts.\nKeep each draft under the requested character limit.\nUse the requested tone and language.\nIf hashtags are enabled, use at most two and only when useful.\nReturn only final tweet drafts. Do not include reasoning or commentary.",
+  "system_prompt": "You are an optimized X/Twitter content generator for founders, marketers, and software builders.\nPrioritize specificity, usefulness, and clarity. Write natural posts that sound human, not generic.\nLead with one sharp idea, lesson, tension, or contrarian observation.\nMake each draft feel written for the requested audience.\nFor every request, produce the requested number of standalone tweet drafts.\nOutput exactly the requested number of drafts. No extra drafts.\nKeep each draft under the requested character limit.\nUse the requested tone and language.\nIf hashtags are enabled, use at most two and only when useful.\nAvoid generic marketing phrasing like \"game-changing\", \"revolutionary\", or \"unlock the power\".\nReturn only final tweet drafts. Do not include reasoning or commentary.",
   "prompt_versions": {
-    "baseline_runtime_prompt": "You are a senior social media strategist who writes concise, high-signal posts for X/Twitter.\nWrite content that feels human, specific, useful, and not generic.\nAvoid clickbait, exaggerated claims, spammy hashtags, and vague AI buzzwords.\nReturn only the final tweet drafts. Do not include analysis.\n\nRules:\n- Each tweet must be under the requested character limit.\n- Make every tweet standalone.\n- Use clear formatting and line breaks only when useful.\n- Do not mention that you are an AI.\n- Do not use more than 2 hashtags per tweet.\n- Avoid emojis unless the tone naturally fits.",
-    "optimized_runtime_prompt": "You are an optimized X/Twitter content generator for founders, marketers, and software builders.\nPrioritize specificity, usefulness, and clarity. Write natural posts that sound human, not generic.\nFor every request, produce the requested number of standalone tweet drafts.\nKeep each draft under the requested character limit.\nUse the requested tone and language.\nIf hashtags are enabled, use at most two and only when useful.\nReturn only final tweet drafts. Do not include reasoning or commentary.",
+    "baseline_runtime_prompt": "You are a senior social media strategist who writes concise, high-signal posts for X/Twitter.\nWrite content that feels human, specific, useful, and non-generic.\nLead with one sharp idea, tension, lesson, or contrarian observation.\nMake each draft feel written for the stated audience, not for everyone.\nAvoid clickbait, exaggerated claims, spammy hashtags, vague AI buzzwords, and generic marketing language.\nReturn only the final tweet drafts. Do not include analysis.\n\nRules:\n- Output exactly the requested number of drafts. No more, no less.\n- Each tweet must be under the requested character limit.\n- Make every tweet standalone.\n- Each tweet should contain one concrete takeaway, opinion, or insight.\n- Mention the audience context or pain point when it helps relevance.\n- Use clear formatting and line breaks only when useful.\n- Do not mention that you are an AI.\n- Do not use more than 2 hashtags per tweet.\n- Avoid emojis unless the tone naturally fits.",
+    "optimized_runtime_prompt": "You are an optimized X/Twitter content generator for founders, marketers, and software builders.\nPrioritize specificity, usefulness, and clarity. Write natural posts that sound human, not generic.\nLead with one sharp idea, lesson, tension, or contrarian observation.\nMake each draft feel written for the requested audience.\nFor every request, produce the requested number of standalone tweet drafts.\nOutput exactly the requested number of drafts. No extra drafts.\nKeep each draft under the requested character limit.\nUse the requested tone and language.\nIf hashtags are enabled, use at most two and only when useful.\nAvoid generic marketing phrasing like \"game-changing\", \"revolutionary\", or \"unlock the power\".\nReturn only final tweet drafts. Do not include reasoning or commentary.",
     "baseline_dspy_instructions": "Generate concise, high-quality X/Twitter posts from a topic and constraints.",
     "optimized_dspy_instructions": "Generate concise, high-quality X/Twitter posts from a topic and constraints."
   },
@@ -31,70 +33,667 @@
   "dataset_topics": [
     "How AI automation helps founders save time on weekly content planning",
     "Why approval workflows matter before auto-publishing social posts",
+    "Building realtime AI streaming UI with FastAPI and Next.js",
+    "Why small SaaS teams should document product decisions before shipping",
+    "What founders misunderstand about using AI for customer support drafts",
+    "How product teams can use user interview notes to write better launch content",
+    "Why realtime AI demos fail when loading states are treated as an afterthought",
+    "What makes onboarding copy feel helpful instead of robotic",
+    "How agencies can turn client strategy calls into better social content ideas",
+    "Why content systems break when every post starts from a blank page",
+    "How to explain API latency issues to non-technical stakeholders without losing trust",
+    "Why AI-generated content still needs a human point of view",
+    "How engineering teams can make internal updates easier to understand",
+    "Why polished product launches can still feel forgettable",
+    "What good AI-assisted writing looks like when a team still cares about brand voice",
+    "Why prompt quality matters more than model switching for many content workflows",
+    "How founders can reuse webinar transcripts without sounding repetitive",
+    "What developers should share online if they want to build trust, not just impressions",
+    "Why user-facing AI features need better empty states",
     "Cara founder menjaga konsistensi konten tanpa kehilangan kualitas",
-    "Building realtime AI streaming UI with FastAPI and Next.js"
+    "Cara tim marketing kecil tetap konsisten posting tanpa burnout",
+    "Mengapa approval konten penting sebelum auto publish di banyak channel",
+    "Cara founder personal branding tanpa terdengar terlalu pencitraan",
+    "Cara menulis thread edukatif yang terasa ringan tapi tetap bernilai",
+    "Mengapa tweet yang terlalu generik biasanya gagal dapat respons",
+    "Cara pakai insight dari komentar audiens untuk bikin konten berikutnya",
+    "Cara menyederhanakan ide teknis supaya tetap menarik untuk audience non teknis",
+    "Mengapa founder perlu punya angle opini, bukan cuma update produk",
+    "Cara bikin konten B2B yang tetap manusiawi dan tidak terasa seperti brosur",
+    "Cara menilai kualitas caption tanpa cuma bilang bagus atau jelek",
+    "Cara mengubah satu artikel panjang menjadi beberapa tweet bernilai",
+    "Mengapa konten founder yang terlalu rapi kadang terasa jauh",
+    "Cara membuat CTA yang tidak terasa memaksa",
+    "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+    "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+    "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+    "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+    "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi"
   ],
   "baseline_preview": [
     {
-      "topic": "Building realtime AI streaming UI with FastAPI and Next.js",
-      "score": 0.8118,
+      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
+      "score": 0.7919,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 0.923,
+        "relevance": 0.5,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft needs more concrete specificity to match the quality criteria."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting"
+    },
+    {
+      "topic": "Why prompt quality matters more than model switching for many content workflows",
+      "score": 0.8206,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.625,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. \"In AI content creation, the right prompt often trumps switching models. Ensure your inputs give a clear angle and quality bar for your audience. #AI #Prompting\""
+    },
+    {
+      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
+      "score": 0.8209,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 1.0,
+        "relevance": 0.625,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.3333,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "Hashtags appear even though they were disabled."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\""
+    },
+    {
+      "topic": "What developers should share online if they want to build trust, not just impressions",
+      "score": 0.8752,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 0.923,
+        "relevance": 0.875,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [],
+      "tweet_count": 2,
+      "tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity"
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "score": 0.8372,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.75,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. User-facing AI features should have better empty states as they help users understand how to proceed and prevent feeling overwhelmed. #AIUX"
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "score": 0.6955,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.2083,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.0833,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. Jangan takut membuat konten yang unik dan berbeda! Bagikan pandangan Anda untuk meningkatkan kualitas personal branding Anda di X."
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "score": 0.8767,
       "aspect_scores": {
         "hook": 0.766,
         "clarity": 0.9615,
-        "relevance": 0.5625,
+        "relevance": 0.7917,
         "naturalness": 1.0,
-        "constraint_fit": 0.85
+        "constraint_fit": 1.0,
+        "reference_fit": 0.6667,
+        "avoidance": 1.0
       },
       "notes": [
-        "Some drafts use more than two hashtags.",
-        "The draft could speak more directly to the target audience."
+        "Hashtags appear even though they were disabled."
       ],
       "tweet_count": 2,
-      "tweets": "1. Leverage FastAPI's async capabilities and automatic API docs to build a robust backend for your real-time AI streaming UI.\n2. Next.js provides the perfect foundation for fast and scalable frontend development. #AI #RealTimeUI #FastAPI #NextJS"
+      "tweets": "1/2 Dari insight meeting internal, bagikan pelajaran yang bisa diaplikasikan ke audiens luar. Jangan lupa menghilangkan detail rahasia! #ContentStrategyIndonesia\n2/2 Transformasi data internal menjadi konten publik yang relevan memerlukan penulisan dengan jelas dan tidak terlalu formal. 📊💬 #ExternalContent"
+    },
+    {
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "score": 0.7832,
+      "aspect_scores": {
+        "hook": 0.836,
+        "clarity": 0.923,
+        "relevance": 0.375,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita."
+    },
+    {
+      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+      "score": 0.7039,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.2083,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.1667,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca."
+    },
+    {
+      "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
+      "score": 0.7622,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.375,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. \"Dalam konten edukasi, definisi saja belum cukup. Penjelasan dengan contoh lebih membantu audiens paham. #ContentEducation\""
     }
   ],
   "optimized_preview": [
     {
-      "topic": "Building realtime AI streaming UI with FastAPI and Next.js",
-      "score": 0.8118,
+      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
+      "score": 0.7919,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 0.923,
+        "relevance": 0.5,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft needs more concrete specificity to match the quality criteria."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting"
+    },
+    {
+      "topic": "Why prompt quality matters more than model switching for many content workflows",
+      "score": 0.8206,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.625,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. \"In AI content creation, the right prompt often trumps switching models. Ensure your inputs give a clear angle and quality bar for your audience. #AI #Prompting\""
+    },
+    {
+      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
+      "score": 0.8209,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 1.0,
+        "relevance": 0.625,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.3333,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "Hashtags appear even though they were disabled."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\""
+    },
+    {
+      "topic": "What developers should share online if they want to build trust, not just impressions",
+      "score": 0.8752,
+      "aspect_scores": {
+        "hook": 0.792,
+        "clarity": 0.923,
+        "relevance": 0.875,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [],
+      "tweet_count": 2,
+      "tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity"
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "score": 0.8372,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.75,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. User-facing AI features should have better empty states as they help users understand how to proceed and prevent feeling overwhelmed. #AIUX"
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "score": 0.6955,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.2083,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.0833,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. Jangan takut membuat konten yang unik dan berbeda! Bagikan pandangan Anda untuk meningkatkan kualitas personal branding Anda di X."
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "score": 0.8767,
       "aspect_scores": {
         "hook": 0.766,
         "clarity": 0.9615,
-        "relevance": 0.5625,
+        "relevance": 0.7917,
         "naturalness": 1.0,
-        "constraint_fit": 0.85
+        "constraint_fit": 1.0,
+        "reference_fit": 0.6667,
+        "avoidance": 1.0
       },
       "notes": [
-        "Some drafts use more than two hashtags.",
-        "The draft could speak more directly to the target audience."
+        "Hashtags appear even though they were disabled."
       ],
       "tweet_count": 2,
-      "tweets": "1. Leverage FastAPI's async capabilities and automatic API docs to build a robust backend for your real-time AI streaming UI.\n2. Next.js provides the perfect foundation for fast and scalable frontend development. #AI #RealTimeUI #FastAPI #NextJS"
+      "tweets": "1/2 Dari insight meeting internal, bagikan pelajaran yang bisa diaplikasikan ke audiens luar. Jangan lupa menghilangkan detail rahasia! #ContentStrategyIndonesia\n2/2 Transformasi data internal menjadi konten publik yang relevan memerlukan penulisan dengan jelas dan tidak terlalu formal. 📊💬 #ExternalContent"
+    },
+    {
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "score": 0.7832,
+      "aspect_scores": {
+        "hook": 0.836,
+        "clarity": 0.923,
+        "relevance": 0.375,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita."
+    },
+    {
+      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+      "score": 0.7039,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.2083,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.1667,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "tweet_count": 2,
+      "tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca."
+    },
+    {
+      "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
+      "score": 0.7622,
+      "aspect_scores": {
+        "hook": 0.766,
+        "clarity": 0.923,
+        "relevance": 0.375,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4167,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "tweet_count": 1,
+      "tweets": "1. \"Dalam konten edukasi, definisi saja belum cukup. Penjelasan dengan contoh lebih membantu audiens paham. #ContentEducation\""
     }
   ],
   "comparison_preview": [
     {
-      "topic": "Building realtime AI streaming UI with FastAPI and Next.js",
-      "baseline_score": 0.8118,
-      "optimized_score": 0.8118,
+      "topic": "What good AI-assisted writing looks like when a team still cares about brand voice",
+      "baseline_score": 0.7919,
+      "optimized_score": 0.7919,
       "score_delta": 0.0,
       "aspect_delta": {
         "hook": 0.0,
         "clarity": 0.0,
         "relevance": 0.0,
         "naturalness": 0.0,
-        "constraint_fit": 0.0
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
       },
       "improved_aspects": [],
       "weaker_aspects": [],
-      "baseline_tweets": "1. Leverage FastAPI's async capabilities and automatic API docs to build a robust backend for your real-time AI streaming UI.\n2. Next.js provides the perfect foundation for fast and scalable frontend development. #AI #RealTimeUI #FastAPI #NextJS",
-      "optimized_tweets": "1. Leverage FastAPI's async capabilities and automatic API docs to build a robust backend for your real-time AI streaming UI.\n2. Next.js provides the perfect foundation for fast and scalable frontend development. #AI #RealTimeUI #FastAPI #NextJS",
+      "baseline_tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting",
+      "optimized_tweets": "1. Good AI-assisted writing leverages speed without sacrificing brand voice. It's a team effort where humans still set boundaries. #BrandVoice\n2. Deciding what not to say is crucial for maintaining brand voice even with AI. Teams must ensure the right judgment prevails. #AIWriting",
       "baseline_notes": [
-        "Some drafts use more than two hashtags.",
+        "The draft needs more concrete specificity to match the quality criteria."
+      ],
+      "optimized_notes": [
+        "The draft needs more concrete specificity to match the quality criteria."
+      ]
+    },
+    {
+      "topic": "Why prompt quality matters more than model switching for many content workflows",
+      "baseline_score": 0.8206,
+      "optimized_score": 0.8206,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. \"In AI content creation, the right prompt often trumps switching models. Ensure your inputs give a clear angle and quality bar for your audience. #AI #Prompting\"",
+      "optimized_tweets": "1. \"In AI content creation, the right prompt often trumps switching models. Ensure your inputs give a clear angle and quality bar for your audience. #AI #Prompting\"",
+      "baseline_notes": [
         "The draft could speak more directly to the target audience."
       ],
       "optimized_notes": [
-        "Some drafts use more than two hashtags.",
+        "The draft could speak more directly to the target audience."
+      ]
+    },
+    {
+      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
+      "baseline_score": 0.8209,
+      "optimized_score": 0.8209,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\"",
+      "optimized_tweets": "1. \"When you have a great quote, consider sharing it as an eye-catching tweet instead of reading it at your next webinar. #webinartranscripts\"\n2. \"Don't just summarize; use specific moments like customer questions or mistakes for more engaging and less repetitive content on Twitter. #founders #transcriptreuse\"",
+      "baseline_notes": [
+        "Hashtags appear even though they were disabled."
+      ],
+      "optimized_notes": [
+        "Hashtags appear even though they were disabled."
+      ]
+    },
+    {
+      "topic": "What developers should share online if they want to build trust, not just impressions",
+      "baseline_score": 0.8752,
+      "optimized_score": 0.8752,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity",
+      "optimized_tweets": "1. Developers who want to build trust should share their debugging notes or architecture decisions. These insights are often more valuable than posting clean code. #SoftwareEngineering\n2. Don't just share perfect builds, instead, discuss the challenges you encountered and how they taught you something. This is what builds a trustworthy community. #DevCommunity",
+      "baseline_notes": [],
+      "optimized_notes": []
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "baseline_score": 0.8372,
+      "optimized_score": 0.8372,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. User-facing AI features should have better empty states as they help users understand how to proceed and prevent feeling overwhelmed. #AIUX",
+      "optimized_tweets": "1. User-facing AI features should have better empty states as they help users understand how to proceed and prevent feeling overwhelmed. #AIUX",
+      "baseline_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft could speak more directly to the target audience."
+      ],
+      "optimized_notes": [
+        "Hashtags appear even though they were disabled.",
+        "The draft could speak more directly to the target audience."
+      ]
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "baseline_score": 0.6955,
+      "optimized_score": 0.6955,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. Jangan takut membuat konten yang unik dan berbeda! Bagikan pandangan Anda untuk meningkatkan kualitas personal branding Anda di X.",
+      "optimized_tweets": "1. Jangan takut membuat konten yang unik dan berbeda! Bagikan pandangan Anda untuk meningkatkan kualitas personal branding Anda di X.",
+      "baseline_notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "optimized_notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ]
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "baseline_score": 0.8767,
+      "optimized_score": 0.8767,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1/2 Dari insight meeting internal, bagikan pelajaran yang bisa diaplikasikan ke audiens luar. Jangan lupa menghilangkan detail rahasia! #ContentStrategyIndonesia\n2/2 Transformasi data internal menjadi konten publik yang relevan memerlukan penulisan dengan jelas dan tidak terlalu formal. 📊💬 #ExternalContent",
+      "optimized_tweets": "1/2 Dari insight meeting internal, bagikan pelajaran yang bisa diaplikasikan ke audiens luar. Jangan lupa menghilangkan detail rahasia! #ContentStrategyIndonesia\n2/2 Transformasi data internal menjadi konten publik yang relevan memerlukan penulisan dengan jelas dan tidak terlalu formal. 📊💬 #ExternalContent",
+      "baseline_notes": [
+        "Hashtags appear even though they were disabled."
+      ],
+      "optimized_notes": [
+        "Hashtags appear even though they were disabled."
+      ]
+    },
+    {
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "baseline_score": 0.7832,
+      "optimized_score": 0.7832,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita.",
+      "optimized_tweets": "1. Berani curhat tentang kegagalan atau kesulitan? Itu menunjukkan transparansi dan kualitas konsultan yang baik. Jujur soal proses, bukan hanya hasil akhir, lebih dipercaya oleh target audience kita.",
+      "baseline_notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "optimized_notes": [
+        "The draft could speak more directly to the target audience."
+      ]
+    },
+    {
+      "topic": "Cara menjaga tone brand tetap konsisten saat beberapa orang menulis konten",
+      "baseline_score": 0.7039,
+      "optimized_score": 0.7039,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca.",
+      "optimized_tweets": "1. Sertakan contoh kalimat seperti: 'Terima kasih atas kontribusi Anda, tim!' untuk melambangkan terima kasih dan kemudahan dalam bekerja sama dengan brand.\n2. Hindari kalimat over-technical atau formal yang dapat membuat konten sulit dibaca oleh pembaca.",
+      "baseline_notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ],
+      "optimized_notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts."
+      ]
+    },
+    {
+      "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
+      "baseline_score": 0.7622,
+      "optimized_score": 0.7622,
+      "score_delta": 0.0,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [],
+      "baseline_tweets": "1. \"Dalam konten edukasi, definisi saja belum cukup. Penjelasan dengan contoh lebih membantu audiens paham. #ContentEducation\"",
+      "optimized_tweets": "1. \"Dalam konten edukasi, definisi saja belum cukup. Penjelasan dengan contoh lebih membantu audiens paham. #ContentEducation\"",
+      "baseline_notes": [
+        "The draft could speak more directly to the target audience."
+      ],
+      "optimized_notes": [
         "The draft could speak more directly to the target audience."
       ]
     }
@@ -111,6 +710,7 @@
     "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy program instructions.",
     "If optimized_validation_score is higher, the new version performed better on the validation examples in this run.",
     "Read aspect scores and notes to understand whether the gain comes from hook, clarity, relevance, naturalness, or constraint fit.",
+    "Check whether reference_fit and avoidance improved, because those now capture style guidance from the dataset.",
     "A prompt can score lower overall even if one aspect improved, so judge by both total score and aspect-level tradeoffs."
   ],
   "scoring_guide": {
@@ -118,6 +718,8 @@
     "clarity": "How easy the draft is to read and skim quickly.",
     "relevance": "How well the draft stays on-topic and speaks to the audience.",
     "naturalness": "How human and non-generic the wording feels.",
-    "constraint_fit": "How well the draft obeys tweet length and hashtag rules."
+    "constraint_fit": "How well the draft obeys tweet length and hashtag rules.",
+    "reference_fit": "How closely the draft matches the specificity and voice shown in the dataset reference posts.",
+    "avoidance": "How well the draft avoids banned patterns like hype, filler, or overused formatting."
   }
 }
