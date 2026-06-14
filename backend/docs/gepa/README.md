@@ -118,7 +118,7 @@ dan
 
 ```python
 optimized_program = optimizer.compile(
-    student=TwitterContentProgram(),
+    student=build_program(),
     trainset=trainset,
     valset=valset,
 )
@@ -139,7 +139,7 @@ Kita memberi tahu GEPA:
 - `reflection_lm`
   artinya model mana yang dipakai selama proses optimasi
 
-### `student=TwitterContentProgram()`
+### `student=build_program()`
 
 Ini program yang mau diperbaiki.
 

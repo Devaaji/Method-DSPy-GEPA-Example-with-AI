@@ -79,12 +79,13 @@ def get_prompt_metadata() -> dict[str, str]:
         }
 
     source = artifact.get("source")
+    artifact_path = artifact.get("artifact_path")
     generated_at = artifact.get("generated_at")
     model = artifact.get("model")
 
     return {
         "prompt_mode": "optimized",
-        "prompt_source": str(source or OPTIMIZED_PROMPT_FILE.name),
+        "prompt_source": str(artifact_path or source or OPTIMIZED_PROMPT_FILE.name),
         "prompt_generated_at": str(generated_at or "unknown"),
         "prompt_model": str(model or "unknown"),
     }

@@ -50,7 +50,7 @@ Bagian pentingnya:
 - jalankan baseline di `valset`
 - jalankan GEPA
 - bandingkan baseline vs optimized
-- simpan hasil ke `optimized_prompt.json`
+- simpan hasil ke `twitter/.generated/twitter_optimized_prompt.json`
 
 Kalau mau tahu baseline dihitung di mana, mulai dari file ini.
 
@@ -67,7 +67,7 @@ Isinya menjelaskan:
 Kalau di baseline ada baris:
 
 ```python
-baseline_program = TwitterContentProgram()
+baseline_program = build_program()
 ```
 
 berarti program awal itu datang dari file ini.
@@ -119,7 +119,7 @@ Scorer menentukan:
 - reference_fit
 - avoidance
 
-### [optimized_prompt.json](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/optimized_prompt.json:1)
+### [twitter_optimized_prompt.json](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/.generated/twitter_optimized_prompt.json:1)
 
 Ini hasil akhir eksperimen.
 
@@ -146,7 +146,7 @@ Urutannya seperti ini:
 Bagian penting di [optimize_gepa.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/scripts/optimize_gepa.py:1):
 
 ```python
-baseline_program = TwitterContentProgram()
+baseline_program = build_program()
 baseline_score, baseline_previews = evaluate_program(baseline_program, valset)
 ```
 
@@ -227,7 +227,7 @@ Kalau mau paham baseline tanpa bingung, baca urut begini:
 2. [twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 3. [gepa_examples.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/datasets/gepa_examples.py:1)
 4. [scoring/README.md](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/scoring/README.md:1)
-5. [optimized_prompt.json](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/optimized_prompt.json:1)
+5. [twitter_optimized_prompt.json](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/.generated/twitter_optimized_prompt.json:1)
 
 ## Ringkasan Singkat
 

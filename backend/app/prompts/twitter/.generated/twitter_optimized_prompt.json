@@ -1,5 +1,6 @@
 {
   "source": "DSPy GEPA optimization",
+  "artifact_path": "app/prompts/twitter/.generated/twitter_optimized_prompt.json",
   "generated_at": "2026-06-14T10:24:22.524116+00:00",
   "model": "qwen2.5:3b",
   "dspy_model": "openai/qwen2.5:3b",
@@ -781,15 +782,16 @@
     }
   ],
   "how_to_use": [
-    "Runtime will automatically load this file through app/prompts/twitter_prompt.py.",
+    "Runtime will automatically load this file through app/prompts/twitter/runtime.py.",
     "Check backend logs for prompt_selected mode=optimized to confirm it is active.",
     "Compare baseline_preview and optimized_preview to study how GEPA changed outputs.",
     "Replace the starter dataset with your own examples to make optimization meaningful."
   ],
-  "note": "This artifact is educational: DSPy optimizes the program internally, while runtime still consumes a stable prompt artifact.",
+  "note": "This artifact is educational: DSPy optimizes only the style layer, while runtime composes system + examples + style into a stable prompt.",
   "how_to_judge": [
     "Check baseline_runtime_prompt vs optimized_runtime_prompt to see what text the app used before and after optimization.",
-    "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy program instructions.",
+    "Check baseline_style_prompt vs optimized_style_prompt to see exactly how GEPA changed the style layer.",
+    "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy style instructions.",
     "If optimized_validation_score is higher, the new version performed better on the validation examples in this run.",
     "Read aspect scores and notes to understand whether the gain comes from hook, clarity, relevance, naturalness, or constraint fit.",
     "Check whether reference_fit and avoidance improved, because those now capture style guidance from the dataset.",

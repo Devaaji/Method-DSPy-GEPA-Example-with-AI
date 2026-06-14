@@ -264,6 +264,7 @@ def main():
 
     artifact = {
         "source": "DSPy GEPA optimization",
+        "artifact_path": str(OUTPUT_PATH.relative_to(PROJECT_ROOT)),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "model": model,
         "dspy_model": dspy_model,
