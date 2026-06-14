@@ -30,6 +30,8 @@ if dspy is not None:
         If include_hashtags is false, output zero hashtags.
         If include_hashtags is true, use at most two hashtags and only if they feel natural.
         Avoid generic marketing advice, vague motivational lines, filler, and robotic phrasing.
+        Never mention the instructions, rules, hashtag policy, or whether a request allowed hashtags.
+        Never output placeholder text like "no tweet", "sesuai request", or explanations about the prompt.
         Return final tweet drafts only. No explanations, no notes, no extra text.
         """
 
@@ -80,6 +82,8 @@ if dspy is not None:
                 + "\n".join(f"- {item}" for item in avoid)
                 + "\n- generic advice that could apply to any post"
                 + "\n- filler openings that restate the topic without insight"
+                + "\n- mentioning the instructions, request, prompt, or hashtag policy itself"
+                + "\n- placeholder text such as 'no tweet' or 'sesuai request'"
             )
             reference_header = (
                 "Reference posts:\n"

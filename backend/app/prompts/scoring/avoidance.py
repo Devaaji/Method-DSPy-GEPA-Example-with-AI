@@ -4,6 +4,19 @@ import re
 
 from .constants import GENERIC_PHRASES
 
+META_OUTPUT_PATTERNS = (
+    "tidak ada tweet",
+    "no tweet",
+    "sesuai request",
+    "sesuai permintaan",
+    "request menggunakan",
+    "hashtags allowed",
+    "hashtag no",
+    "quality criteria",
+    "output exactly",
+    "include_hashtags",
+)
+
 
 def score_avoidance(tweets: list[str], avoid: list[str]) -> tuple[float, list[str]]:
     if not tweets or not avoid:
@@ -25,10 +38,13 @@ def score_avoidance(tweets: list[str], avoid: list[str]) -> tuple[float, list[st
         bad_hits += 1
     if any("generic" in item or "buzzword" in item for item in lowered_avoid):
         bad_hits += sum(1 for phrase in GENERIC_PHRASES if phrase in combined_text)
+    bad_hits += sum(2 for pattern in META_OUTPUT_PATTERNS if pattern in combined_text)
 
     penalty = min(bad_hits * 0.12, 0.72)
     score = max(1.0 - penalty, 0.0)
     notes: list[str] = []
     if score < 0.76:
         notes.append("The draft still includes patterns listed in the avoid guidance.")
+    if any(pattern in combined_text for pattern in META_OUTPUT_PATTERNS):
+        notes.append("The draft talks about the instructions instead of just delivering the final post.")
     return round(score, 4), notes

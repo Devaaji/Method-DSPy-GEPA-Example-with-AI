@@ -11,6 +11,19 @@ from .reference_fit import score_reference_alignment
 from .relevance import score_relevance
 from .utils import extract_list, extract_tweets
 
+META_OUTPUT_PATTERNS = (
+    "tidak ada tweet",
+    "no tweet",
+    "sesuai request",
+    "sesuai permintaan",
+    "request menggunakan",
+    "hashtags allowed",
+    "hashtag no",
+    "quality criteria",
+    "output exactly",
+    "include_hashtags",
+)
+
 
 def evaluate_twitter_output(example: Any, prediction: Any) -> dict[str, Any]:
     text = (getattr(prediction, "tweets", "") or "").strip()
@@ -76,6 +89,11 @@ def evaluate_twitter_output(example: Any, prediction: Any) -> dict[str, Any]:
         + (0.07 * avoidance),
         4,
     )
+
+    combined_text = " ".join(tweets).lower()
+    if any(pattern in combined_text for pattern in META_OUTPUT_PATTERNS):
+        overall_score = round(overall_score * 0.6, 4)
+        criteria_notes.append("The draft leaks internal instructions or placeholder text instead of acting like a real post.")
 
     notes = [
         *constraint_notes,
