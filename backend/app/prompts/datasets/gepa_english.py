@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.prompts.datasets.example_factory import normalize_examples
 
 ENGLISH_COMMON_QUALITY_CRITERIA = [
     "Write in natural, modern English.",
@@ -414,6 +415,9 @@ ENGLISH_VAL_EXAMPLES: list[dict[str, Any]] = [
     },
 ]
 
+ENGLISH_TRAIN_EXAMPLES = normalize_examples(ENGLISH_TRAIN_EXAMPLES)
+ENGLISH_VAL_EXAMPLES = normalize_examples(ENGLISH_VAL_EXAMPLES)
+
 
 def build_english_gepa_trainset() -> list[dict[str, Any]]:
     """
@@ -423,6 +427,9 @@ def build_english_gepa_trainset() -> list[dict[str, Any]]:
     - quality_criteria: what a strong answer should satisfy
     - avoid: what the model should not do
     - reference_posts: example outputs that represent the desired quality
+    - bad_examples: examples of weak outputs to avoid resembling
+    - desired_structure / hook_style / must_include / content_goal: clearer generation goals
+    - scoring_rubric: explicit evaluation hints
     """
     return ENGLISH_TRAIN_EXAMPLES
 

@@ -45,6 +45,12 @@ if dspy is not None:
         reference_posts = dspy.InputField(desc="Style anchors showing the desired specificity, framing, and voice. Learn from them, but do not copy them.")
         quality_criteria = dspy.InputField(desc="Checklist of what a strong output must do. Satisfy these criteria directly.")
         avoid = dspy.InputField(desc="Phrases, patterns, and mistakes that must not appear in the output.")
+        bad_examples = dspy.InputField(desc="Weak outputs to avoid resembling. Use them as anti-patterns.")
+        desired_structure = dspy.InputField(desc="The exact structure the final output should follow.")
+        hook_style = dspy.InputField(desc="The preferred style of opening or hook.")
+        must_include = dspy.InputField(desc="Important ideas, words, or concepts that should appear naturally when relevant.")
+        content_goal = dspy.InputField(desc="The main job this content should do for the reader.")
+        scoring_rubric = dspy.InputField(desc="Evaluation hints describing what a strong draft will be rewarded for.")
         tweets = dspy.OutputField(desc="Final tweet drafts only, numbered one per line, with no commentary.")
 
 
@@ -65,6 +71,12 @@ if dspy is not None:
             reference_posts: list[str],
             quality_criteria: list[str],
             avoid: list[str],
+            bad_examples: list[str],
+            desired_structure: str,
+            hook_style: str,
+            must_include: list[str],
+            content_goal: str,
+            scoring_rubric: dict[str, str],
         ):
             hashtag_rule = (
                 "Hashtags allowed: NO. Use zero hashtags in every draft."
@@ -90,6 +102,19 @@ if dspy is not None:
                 + "\n".join(f"- {item}" for item in reference_posts)
                 + "\nUse these as style anchors for specificity and realism. Do not copy wording."
             )
+            bad_examples_header = (
+                "Bad examples to avoid resembling:\n"
+                + "\n".join(f"- {item}" for item in bad_examples)
+                + "\nIf your draft sounds like any of these, rewrite it to be more specific and useful."
+            )
+            must_include_header = (
+                "Must include when it fits naturally:\n"
+                + "\n".join(f"- {item}" for item in must_include)
+            )
+            rubric_header = (
+                "Scoring rubric:\n"
+                + "\n".join(f"- {key}: {value}" for key, value in scoring_rubric.items())
+            )
             return self.generate(
                 topic=topic,
                 tone=tone,
@@ -101,6 +126,12 @@ if dspy is not None:
                 reference_posts=reference_header,
                 quality_criteria=quality_header,
                 avoid=avoid_header,
+                bad_examples=bad_examples_header,
+                desired_structure=desired_structure,
+                hook_style=hook_style,
+                must_include=must_include_header,
+                content_goal=content_goal,
+                scoring_rubric=rubric_header,
             )
 
 

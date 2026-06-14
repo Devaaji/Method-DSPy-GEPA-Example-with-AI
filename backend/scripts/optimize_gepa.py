@@ -58,6 +58,12 @@ def example_inputs(example: Any) -> dict[str, Any]:
         "reference_posts": list(getattr(example, "reference_posts", []) or []),
         "quality_criteria": list(getattr(example, "quality_criteria", []) or []),
         "avoid": list(getattr(example, "avoid", []) or []),
+        "bad_examples": list(getattr(example, "bad_examples", []) or []),
+        "must_include": list(getattr(example, "must_include", []) or []),
+        "scoring_rubric": dict(getattr(example, "scoring_rubric", {}) or {}),
+        "desired_structure": str(getattr(example, "desired_structure", "") or ""),
+        "hook_style": str(getattr(example, "hook_style", "") or ""),
+        "content_goal": str(getattr(example, "content_goal", "") or ""),
     }
 
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from app.prompts.datasets.example_factory import normalize_examples
 
 COMMON_QUALITY_CRITERIA = [
     "Bahasa Indonesia natural, tidak kaku, tidak terlalu formal.",
@@ -412,11 +413,15 @@ INDONESIAN_VAL_EXAMPLES: list[dict[str, Any]] = [
     },
 ]
 
+INDONESIAN_TRAIN_EXAMPLES = normalize_examples(INDONESIAN_TRAIN_EXAMPLES)
+INDONESIAN_VAL_EXAMPLES = normalize_examples(INDONESIAN_VAL_EXAMPLES)
+
 
 def build_indonesian_gepa_trainset() -> list[dict[str, Any]]:
     """
     Use this if your pipeline still consumes plain dict examples.
-    Extra fields like quality_criteria, avoid, and reference_posts can be used
+    Extra fields like quality_criteria, avoid, reference_posts, bad_examples,
+    desired_structure, hook_style, must_include, content_goal, and scoring_rubric can be used
     by your metric / evaluator to give better GEPA feedback.
     """
     return INDONESIAN_TRAIN_EXAMPLES

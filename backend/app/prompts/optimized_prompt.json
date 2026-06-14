@@ -1,14 +1,14 @@
 {
   "source": "DSPy GEPA optimization",
-  "generated_at": "2026-06-14T09:11:14.130562+00:00",
+  "generated_at": "2026-06-14T10:24:22.524116+00:00",
   "model": "qwen2.5:3b",
   "dspy_model": "openai/qwen2.5:3b",
   "base_url": "http://localhost:11434/v1",
   "trainset_size": 28,
   "valset_size": 10,
-  "baseline_validation_score": 0.7918,
-  "optimized_validation_score": 0.7946,
-  "score_delta": 0.0028,
+  "baseline_validation_score": 0.756,
+  "optimized_validation_score": 0.7944,
+  "score_delta": 0.0384,
   "score_weights": {
     "relevance": 0.2,
     "hook": 0.18,
@@ -72,11 +72,131 @@
   "baseline_preview": [
     {
       "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
-      "score": 0.7671,
+      "score": 0.6048,
+      "aspect_scores": {
+        "hook": 0.774,
+        "clarity": 0.8805,
+        "relevance": 0.35,
+        "naturalness": 1.0,
+        "constraint_fit": 0.5,
+        "reference_fit": 0.55,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "Some drafts use more than two hashtags.",
+        "The output returned 2 draft(s) even though 1 was requested.",
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft breaks the desired structure by using hashtags when the structure says not to.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "tweet_count": 2,
+      "tweets": "Why changelog posts often go unread until they reveal the hard decisions behind features.\n#[#product]"
+    },
+    {
+      "topic": "Why prompt quality matters more than model switching for many content workflows",
+      "score": 0.8135,
       "aspect_scores": {
         "hook": 0.83,
-        "clarity": 0.923,
-        "relevance": 0.3,
+        "clarity": 1.0,
+        "relevance": 0.775,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.3187,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ],
+      "tweet_count": 1,
+      "tweets": "A clear lesson for AI builders: prompt quality matters more than model switching. Crafting effective prompts often beats relying on any single model’s strengths. #AI #Prompting"
+    },
+    {
+      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
+      "score": 0.7682,
+      "aspect_scores": {
+        "hook": 0.774,
+        "clarity": 0.9615,
+        "relevance": 0.4679,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.6187,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "tweet_count": 2,
+      "tweets": "Founders can reuse webinar transcripts by pulling out one strong quote, mistake, framework, customer question, or opinion.\n- Founders often overlook valuable insights in webinars. Repurpose key moments like a master."
+    },
+    {
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "score": 0.6693,
+      "aspect_scores": {
+        "hook": 0.731,
+        "clarity": 0.8613,
+        "relevance": 0.625,
+        "naturalness": 1.0,
+        "constraint_fit": 0.75,
+        "reference_fit": 0.4125,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The output returned 4 draft(s) even though 2 was requested.",
+        "The draft resembles the bad examples more than it should."
+      ],
+      "tweet_count": 4,
+      "tweets": "When discussing a failed product experiment, leaders should highlight assumptions tested and outcomes learned, fostering an open conversation about potential improvements.\n— Reflective on Product Leaders\n\nTeams often shy away from defensive post-mortems. Instead of avoiding blame, leading with what they tried can help rebuild trust and set a constructive tone for moving forward.\n— Reflective on Product Leaders"
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "score": 0.7272,
+      "aspect_scores": {
+        "hook": 0.718,
+        "clarity": 1.0,
+        "relevance": 0.4679,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5625,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The opening does not yet match the requested hook style strongly enough.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "tweet_count": 1,
+      "tweets": "When designing product features like empty states, remember that users often struggle to know where to begin. This is why focusing on clarity and empathy can significantly improve user experience."
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "score": 0.7891,
+      "aspect_scores": {
+        "hook": 0.788,
+        "clarity": 1.0,
+        "relevance": 0.75,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.1875,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ],
+      "tweet_count": 1,
+      "tweets": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan? Kritik dan pujian sama-sama bisa, tapi jika hanya salah satu, keputusan pasti ditentukan oleh pesona."
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "score": 0.7182,
+      "aspect_scores": {
+        "hook": 0.718,
+        "clarity": 1.0,
+        "relevance": 0.45,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
         "reference_fit": 0.5,
@@ -84,147 +204,37 @@
       },
       "notes": [
         "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "tweet_count": 1,
-      "tweets": "Changelog posts often lack attention. Explain decisions to show value."
-    },
-    {
-      "topic": "Why prompt quality matters more than model switching for many content workflows",
-      "score": 0.7592,
-      "aspect_scores": {
-        "hook": 0.718,
-        "clarity": 1.0,
-        "relevance": 0.225,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.65,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "tweet_count": 1,
-      "tweets": "In AI content workflows, a high-quality prompt often trumps choosing different models. Focus on giving your model clear directions that speak directly to your audience's needs and pain points. #Prompting #AIContentCrafting"
-    },
-    {
-      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
-      "score": 0.7833,
-      "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 1.0,
-        "relevance": 0.3821,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.4437,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "The opening does not yet match the requested hook style strongly enough.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
       ],
       "tweet_count": 2,
-      "tweets": "1. By reusing webinar transcripts, founders can avoid redundancy while sharing valuable insights. For example, extract an impactful quote or a common mistake to highlight in your posts.\n2. Don't just summarize; pick moments that engage readers. Use these for Twitter feeds instead of the main stage to maintain interest and authenticity."
+      "tweets": "Mengubah insight meeting internal tidak harus jadi teka-teki rahasia. Intinya adalah mampu merangkum pelajaran yang bisa dilakukan oleh banyak orang.\nPahami bagaimana membuat data dari keputusan tim menjadi pembelajaran umum dan relevan untuk audiens luar."
     },
     {
-      "topic": "How product teams should talk about failed experiments without sounding defensive",
-      "score": 0.8196,
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "score": 0.8135,
       "aspect_scores": {
-        "hook": 0.939,
+        "hook": 0.788,
         "clarity": 1.0,
-        "relevance": 0.55,
+        "relevance": 0.75,
         "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.2062,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
-      ],
-      "tweet_count": 2,
-      "tweets": "1. In product leadership, we often focus on successes. But what if your experiment didn’t work out? Here’s how to discuss failures constructively: name the assumption, evidence, and next steps clearly.\n2. When sharing failed experiments, be specific about why things went wrong. This approach shifts from defense to learning, making your team sound more credible and forward-looking."
-    },
-    {
-      "topic": "Why user-facing AI features need better empty states",
-      "score": 0.7565,
-      "aspect_scores": {
-        "hook": 0.79,
-        "clarity": 0.8647,
-        "relevance": 0.5929,
-        "naturalness": 1.0,
-        "constraint_fit": 0.5167,
-        "reference_fit": 0.65,
+        "constraint_fit": 0.65,
+        "reference_fit": 0.5062,
         "avoidance": 1.0
       },
       "notes": [
         "Some drafts exceed the requested character limit.",
-        "The output returned 3 draft(s) even though 1 was requested."
-      ],
-      "tweet_count": 3,
-      "tweets": "As product designers, we often overlook the importance of AI empty states. They serve as a first point of interaction, guiding users through the system without overwhelming them with too much information upfront.\n\nUnderstanding how to craft effective empty states is crucial for creating intuitive and user-friendly interfaces. Empty states should be designed to teach users about what they can achieve next, offering examples and hints that reduce anxiety when exploring new features.\n\nBy focusing on crafting meaningful empty states, we empower users to make the most of their interactions with our AI features. This not only enhances overall usability but also builds trust in our product, knowing that even at the start, there's always a way forward."
-    },
-    {
-      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
-      "score": 0.7558,
-      "aspect_scores": {
-        "hook": 0.788,
-        "clarity": 0.923,
-        "relevance": 0.3,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.4625,
-        "avoidance": 1.0
-      },
-      "notes": [
         "The draft could speak more directly to the target audience."
       ],
       "tweet_count": 1,
-      "tweets": "Jangan terlalu aman dalam membuat konten, karena itu bisa bikin penonton cepat lupa. Loyal? Tentu saja. Tapi cobalah membedakan dirimu dengan menyajikan sudut pandang yang unik dan jelas."
-    },
-    {
-      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
-      "score": 0.8173,
-      "aspect_scores": {
-        "hook": 0.766,
-        "clarity": 1.0,
-        "relevance": 0.525,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.5437,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "tweet_count": 2,
-      "tweets": "1. Mengubah insight meeting internal menjadi konten yang relevan untuk audiens luar: pertimbangkan apa pelajaran dan pembelajaran praktisnya bagi mereka.\n\n2. Jika ada keputusan penting atau pertanyaan besar dalam meeting, coba bingkainya sebagai kasus studi atau pengalaman lain yang bisa diadaptasi menjadi konten publik."
-    },
-    {
-      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
-      "score": 0.7855,
-      "aspect_scores": {
-        "hook": 0.718,
-        "clarity": 1.0,
-        "relevance": 0.45,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.4625,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "tweet_count": 1,
-      "tweets": "Konten yang jujur soal proses sering membuktikan kejujuranmu. Ini bukan berarti hasil akhirmu tak boleh dipercaya, tetapi perjalanan bagaimana kamu mencapainya, punya nilai tersendiri dalam diri pembaca."
+      "tweets": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja? Kita selalu berfokus pada apa yang kita capai, tetapi lupa bagaimana kita sampai di sana. Jadi, buatlah keputusan dan pilihannya lebih publik agar orang lain belajar."
     },
     {
       "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
-      "score": 0.8378,
+      "score": 0.8246,
       "aspect_scores": {
-        "hook": 0.792,
-        "clarity": 1.0,
+        "hook": 0.753,
+        "clarity": 0.9615,
         "relevance": 0.6167,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
@@ -233,54 +243,169 @@
       },
       "notes": [],
       "tweet_count": 2,
-      "tweets": "1. Dalam menjelaskan trade-off produk ke audiens product team Indonesia, jujur saja mengungkapkan prioritas dan konsekuensi adalah kunci.\n2. Terdengar defensif jika Anda terlalu memfokuskan pada alasan mengapa pilihan tertentu yang dipilih. Jadikan penjelasan itu lebih inti seputar kebutuhan pengguna dan dampaknya."
+      "tweets": "Mengelola trade-off dalam produk? Jelaskan dengan jujur dan memberikan konsekuensi. Ini lebih kuat dari berargumen.\nPahami keputusan product Anda, kemudian jelaskannya tanpa terdengar defensif untuk menghibur audiens Indonesia."
     },
     {
       "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
-      "score": 0.8364,
+      "score": 0.8314,
       "aspect_scores": {
         "hook": 0.788,
         "clarity": 0.923,
-        "relevance": 0.75,
+        "relevance": 0.6,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.3688,
+        "reference_fit": 0.6187,
         "avoidance": 1.0
       },
       "notes": [
         "The draft could speak more directly to the target audience."
       ],
       "tweet_count": 1,
-      "tweets": "Mengapa konten edukasi perlu punya contoh bukan hanya definisi? Pasangan contoh memberikan nuansa yang lebih real dan mudah dipahami. #ContentTips"
+      "tweets": "Mengapa konten edukasi perlu punya contoh? Jangan hanya definisi. Tunjukkan situasi nyata supaya audiens paham langsung. #ContentEducation"
     }
   ],
   "optimized_preview": [
     {
       "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
-      "score": 0.7496,
+      "score": 0.8444,
       "aspect_scores": {
-        "hook": 0.882,
-        "clarity": 0.874,
-        "relevance": 0.425,
+        "hook": 0.83,
+        "clarity": 1.0,
+        "relevance": 0.625,
         "naturalness": 1.0,
-        "constraint_fit": 0.65,
-        "reference_fit": 0.55,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5,
+        "avoidance": 1.0
+      },
+      "notes": [],
+      "tweet_count": 1,
+      "tweets": "Changelog posts often lack attention because they fail to explain why a feature was chosen over other options. For product marketers, this means focusing on user benefits rather than internal logistics."
+    },
+    {
+      "topic": "Why prompt quality matters more than model switching for many content workflows",
+      "score": 0.7976,
+      "aspect_scores": {
+        "hook": 0.83,
+        "clarity": 0.923,
+        "relevance": 0.775,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.275,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ],
+      "tweet_count": 1,
+      "tweets": "Why prompt quality matters more than model switching for AI builders. #AI #Prompting"
+    },
+    {
+      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
+      "score": 0.9271,
+      "aspect_scores": {
+        "hook": 0.88,
+        "clarity": 1.0,
+        "relevance": 1.0,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.4875,
+        "avoidance": 1.0
+      },
+      "notes": [],
+      "tweet_count": 2,
+      "tweets": "How founders can reuse webinar transcripts without sounding repetitive by pulling out one strong quote, one mistake, and one framework. Focus on what makes a post engaging in the feed.\n\nHow creators like you can repurpose a 90-minute webinar into digestible content for social media with tailored examples that keep readers interested. Share insights from your audience's perspective to make it feel relevant."
+    },
+    {
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "score": 0.6498,
+      "aspect_scores": {
+        "hook": 0.744,
+        "clarity": 1.0,
+        "relevance": 0.275,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.1312,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft falls short of the specificity bar in the scoring rubric.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "tweet_count": 2,
+      "tweets": "We recently faced a product experiment that didn't pan out as expected. Our team quickly realized it was essential to unpack what we learned so others could see we weren’t just deflecting.\n\nTeams often struggle when discussing failure, but naming assumptions and learning points clearly helps validate their approach and builds credibility."
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "score": 0.8241,
+      "aspect_scores": {
+        "hook": 0.718,
+        "clarity": 1.0,
+        "relevance": 0.7643,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.5625,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The opening does not yet match the requested hook style strongly enough."
+      ],
+      "tweet_count": 1,
+      "tweets": "Facing user-facing AI features often fall flat because designers fail to consider the emotional weight of empty states. Product designers should prioritize crafting better ones."
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "score": 0.7774,
+      "aspect_scores": {
+        "hook": 0.788,
+        "clarity": 0.923,
+        "relevance": 0.75,
+        "naturalness": 1.0,
+        "constraint_fit": 1.0,
+        "reference_fit": 0.1875,
+        "avoidance": 1.0
+      },
+      "notes": [
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ],
+      "tweet_count": 1,
+      "tweets": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan? Kritik ke aspek profesional ini saja."
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "score": 0.6766,
+      "aspect_scores": {
+        "hook": 0.718,
+        "clarity": 1.0,
+        "relevance": 0.6083,
+        "naturalness": 1.0,
+        "constraint_fit": 0.575,
+        "reference_fit": 0.575,
         "avoidance": 1.0
       },
       "notes": [
         "Some drafts exceed the requested character limit.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "Some drafts use more than two hashtags.",
+        "Hashtags appear even though they were disabled.",
+        "The draft could speak more directly to the target audience.",
+        "The draft breaks the desired structure by using hashtags when the structure says not to.",
+        "The opening does not yet match the requested hook style strongly enough."
       ],
-      "tweet_count": 1,
-      "tweets": "In product marketing, understanding why a feature changed can make changelog posts more engaging. Instead of just listing new features, explain what benefits they bring. For example, say goodbye to manual data entry in our latest update. This simplifies your workflow and saves time for you."
+      "tweet_count": 2,
+      "tweets": "Mengubah insight meeting internal jadi konten publik bisa lebih mudah kalau kamu fokus ke apa pelajaran utama dan bagaimana mereka bisa membantu pengguna, bukan detail teknis. #contentstrategyid\n\nDalam meeting internal, seringkali kita terlalu sibuk mencari solusi atau jawaban langsung. Coba lakukan sebaliknya: fokus pada apa yang bisa diambil pelajaran dan bagaimana aspek publik akan berinteraksi dengan informasi itu. #contentstrategyid"
     },
     {
-      "topic": "Why prompt quality matters more than model switching for many content workflows",
-      "score": 0.8005,
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "score": 0.8117,
       "aspect_scores": {
         "hook": 0.718,
         "clarity": 1.0,
-        "relevance": 0.525,
+        "relevance": 0.75,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
         "reference_fit": 0.4625,
@@ -288,468 +413,370 @@
       },
       "notes": [
         "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "The opening does not yet match the requested hook style strongly enough."
       ],
       "tweet_count": 1,
-      "tweets": "Crafting quality prompts is often more crucial than constantly switching between different AI models. The right input beats model selection in many workflows. #AI #Prompting"
-    },
-    {
-      "topic": "How founders can reuse webinar transcripts without sounding repetitive",
-      "score": 0.8183,
-      "aspect_scores": {
-        "hook": 0.818,
-        "clarity": 1.0,
-        "relevance": 0.4679,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.575,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "tweet_count": 2,
-      "tweets": "1. By reusing a webinar transcript, founders can cut down on repetition by pulling out key moments like strong quotes, customer questions, and frameworks into engaging feed content instead of live-stage posts.\n2. To reuse effectively, focus on one standout moment from your webinar — whether it’s a memorable quote or a helpful framework — then craft a short, tweetable version that piques interest without feeling redundant."
-    },
-    {
-      "topic": "How product teams should talk about failed experiments without sounding defensive",
-      "score": 0.738,
-      "aspect_scores": {
-        "hook": 0.766,
-        "clarity": 0.9615,
-        "relevance": 0.225,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.4125,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "tweet_count": 2,
-      "tweets": "1. In a recent experiment that missed its goal, we focused on what we learned. It’s not about defending; it’s about demonstrating quality thinking.\n\n2. When discussing failed experiments, be direct: name assumptions, evidence, and the next steps. This keeps your message clear and credible."
-    },
-    {
-      "topic": "Why user-facing AI features need better empty states",
-      "score": 0.77,
-      "aspect_scores": {
-        "hook": 0.718,
-        "clarity": 1.0,
-        "relevance": 0.2571,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.6937,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "tweet_count": 1,
-      "tweets": "Empty states in AI UX are critical because they teach users what to ask next. A good empty state shows examples and lowers anxiety about starting wrong."
-    },
-    {
-      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
-      "score": 0.878,
-      "aspect_scores": {
-        "hook": 0.718,
-        "clarity": 1.0,
-        "relevance": 0.775,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.7375,
-        "avoidance": 1.0
-      },
-      "notes": [],
-      "tweet_count": 1,
-      "tweets": "Konten yang terlalu aman sering tidak membuat personal brands Indonesia diingat. Mereka mudah disetujui, tapi cepat dilupakan. Berani punya sudut pandang jelas untuk meninggalkan kesan."
-    },
-    {
-      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
-      "score": 0.8354,
-      "aspect_scores": {
-        "hook": 0.801,
-        "clarity": 1.0,
-        "relevance": 0.525,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.6625,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "tweet_count": 2,
-      "tweets": "1. Bagaimana kita bisa mengubah insight dari meeting internal menjadi konten publik? Langkah pertama adalah membuang detail yang sensitif dan fokus pada pelajaran umum.\n2. Jika keputusan, trade-off, atau pertanyaan dalam meeting internal memiliki makna yang lebih luas, mereka dapat menjadi sumber inspirasi untuk konten publik."
-    },
-    {
-      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
-      "score": 0.675,
-      "aspect_scores": {
-        "hook": 0.718,
-        "clarity": 0.923,
-        "relevance": 0.075,
-        "naturalness": 1.0,
-        "constraint_fit": 1.0,
-        "reference_fit": 0.2312,
-        "avoidance": 1.0
-      },
-      "notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
-      ],
-      "tweet_count": 1,
-      "tweets": "Proses adalah cermin dari kecerdasan. Menceritakan pengalamannya bukan sekadar pamer hasil akhir saja."
+      "tweets": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja. Sebagai pembangun, kita tahu betul bagaimana pentingnya transparansi dalam proyek-proyek besar."
     },
     {
       "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
-      "score": 0.8115,
+      "score": 0.8364,
       "aspect_scores": {
-        "hook": 0.827,
+        "hook": 0.718,
         "clarity": 0.9615,
-        "relevance": 0.375,
+        "relevance": 0.75,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.7375,
+        "reference_fit": 0.7812,
         "avoidance": 1.0
       },
       "notes": [
-        "The draft could speak more directly to the target audience."
+        "The draft could speak more directly to the target audience.",
+        "The opening does not yet match the requested hook style strongly enough."
       ],
       "tweet_count": 2,
-      "tweets": "1. Produk kita sekarang membutuhkan penyesuaian untuk masalah yang baru muncul. Jelaskan trade-off ini dengan jujur dan tenang, tanpa terdengar defensif. \n\n2. Pilihannya tidak sempurna, tapi setidaknya harus bisa menjawab pertanyaan fundamental: kenapa ini adalah pilihan yang lebih baik untuk mayoritas pengguna?"
+      "tweets": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif: Jelaskan pilihan yang diambil, kenapa itu masuk akal untuk mayoritas user, dan apa konsekuensinya.\n\nMenguji trade-off dengan jujur bisa membantu team lebih percaya diri dalam membuat keputusan produk."
     },
     {
       "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
-      "score": 0.8698,
+      "score": 0.7991,
       "aspect_scores": {
         "hook": 0.788,
-        "clarity": 1.0,
+        "clarity": 0.923,
         "relevance": 0.8333,
         "naturalness": 1.0,
         "constraint_fit": 1.0,
-        "reference_fit": 0.4125,
+        "reference_fit": 0.25,
         "avoidance": 1.0
       },
       "notes": [
-        "The draft could speak more directly to the target audience."
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
       ],
       "tweet_count": 1,
-      "tweets": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi? Dalam dunia pembelajaran online, penjelasan nyata dan kasih akan lebih menarik dan mudah dipahami. #ContentEducation #EDUCREATORS"
+      "tweets": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi? Tanyakan ke pengguna. #ContentEducation #PendidikanIndonesia"
     }
   ],
   "comparison_preview": [
     {
       "topic": "Why changelog posts rarely earn attention unless they explain the decision behind the feature",
-      "baseline_score": 0.7671,
-      "optimized_score": 0.7496,
-      "score_delta": -0.0175,
+      "baseline_score": 0.6048,
+      "optimized_score": 0.8444,
+      "score_delta": 0.2396,
       "aspect_delta": {
-        "hook": 0.052,
-        "clarity": -0.049,
-        "relevance": 0.125,
+        "hook": 0.056,
+        "clarity": 0.1195,
+        "relevance": 0.275,
         "naturalness": 0.0,
-        "constraint_fit": -0.35,
-        "reference_fit": 0.05,
+        "constraint_fit": 0.5,
+        "reference_fit": -0.05,
         "avoidance": 0.0
       },
       "improved_aspects": [
         "hook",
-        "relevance",
-        "reference_fit"
-      ],
-      "weaker_aspects": [
         "clarity",
+        "relevance",
         "constraint_fit"
       ],
-      "baseline_tweets": "Changelog posts often lack attention. Explain decisions to show value.",
-      "optimized_tweets": "In product marketing, understanding why a feature changed can make changelog posts more engaging. Instead of just listing new features, explain what benefits they bring. For example, say goodbye to manual data entry in our latest update. This simplifies your workflow and saves time for you.",
-      "baseline_notes": [
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
+      "weaker_aspects": [
+        "reference_fit"
       ],
-      "optimized_notes": [
-        "Some drafts exceed the requested character limit.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ]
+      "baseline_tweets": "Why changelog posts often go unread until they reveal the hard decisions behind features.\n#[#product]",
+      "optimized_tweets": "Changelog posts often lack attention because they fail to explain why a feature was chosen over other options. For product marketers, this means focusing on user benefits rather than internal logistics.",
+      "baseline_notes": [
+        "Some drafts use more than two hashtags.",
+        "The output returned 2 draft(s) even though 1 was requested.",
+        "Hashtags appear even though they were disabled.",
+        "The draft does not strongly reflect the requested topic.",
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft breaks the desired structure by using hashtags when the structure says not to.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "optimized_notes": []
     },
     {
       "topic": "Why prompt quality matters more than model switching for many content workflows",
-      "baseline_score": 0.7592,
-      "optimized_score": 0.8005,
-      "score_delta": 0.0413,
+      "baseline_score": 0.8135,
+      "optimized_score": 0.7976,
+      "score_delta": -0.0159,
       "aspect_delta": {
         "hook": 0.0,
-        "clarity": 0.0,
-        "relevance": 0.3,
+        "clarity": -0.077,
+        "relevance": 0.0,
         "naturalness": 0.0,
         "constraint_fit": 0.0,
-        "reference_fit": -0.1875,
+        "reference_fit": -0.0437,
         "avoidance": 0.0
       },
-      "improved_aspects": [
-        "relevance"
-      ],
+      "improved_aspects": [],
       "weaker_aspects": [
+        "clarity",
         "reference_fit"
       ],
-      "baseline_tweets": "In AI content workflows, a high-quality prompt often trumps choosing different models. Focus on giving your model clear directions that speak directly to your audience's needs and pain points. #Prompting #AIContentCrafting",
-      "optimized_tweets": "Crafting quality prompts is often more crucial than constantly switching between different AI models. The right input beats model selection in many workflows. #AI #Prompting",
+      "baseline_tweets": "A clear lesson for AI builders: prompt quality matters more than model switching. Crafting effective prompts often beats relying on any single model’s strengths. #AI #Prompting",
+      "optimized_tweets": "Why prompt quality matters more than model switching for AI builders. #AI #Prompting",
       "baseline_notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "The draft falls short of the specificity bar in the scoring rubric."
       ],
       "optimized_notes": [
-        "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
       ]
     },
     {
       "topic": "How founders can reuse webinar transcripts without sounding repetitive",
-      "baseline_score": 0.7833,
-      "optimized_score": 0.8183,
-      "score_delta": 0.035,
+      "baseline_score": 0.7682,
+      "optimized_score": 0.9271,
+      "score_delta": 0.1589,
       "aspect_delta": {
-        "hook": 0.026,
-        "clarity": 0.0,
-        "relevance": 0.0858,
+        "hook": 0.106,
+        "clarity": 0.0385,
+        "relevance": 0.5321,
         "naturalness": 0.0,
         "constraint_fit": 0.0,
-        "reference_fit": 0.1313,
+        "reference_fit": -0.1312,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [
+        "hook",
+        "clarity",
+        "relevance"
+      ],
+      "weaker_aspects": [
+        "reference_fit"
+      ],
+      "baseline_tweets": "Founders can reuse webinar transcripts by pulling out one strong quote, mistake, framework, customer question, or opinion.\n- Founders often overlook valuable insights in webinars. Repurpose key moments like a master.",
+      "optimized_tweets": "How founders can reuse webinar transcripts without sounding repetitive by pulling out one strong quote, one mistake, and one framework. Focus on what makes a post engaging in the feed.\n\nHow creators like you can repurpose a 90-minute webinar into digestible content for social media with tailored examples that keep readers interested. Share insights from your audience's perspective to make it feel relevant.",
+      "baseline_notes": [
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "optimized_notes": []
+    },
+    {
+      "topic": "How product teams should talk about failed experiments without sounding defensive",
+      "baseline_score": 0.6693,
+      "optimized_score": 0.6498,
+      "score_delta": -0.0195,
+      "aspect_delta": {
+        "hook": 0.013,
+        "clarity": 0.1387,
+        "relevance": -0.35,
+        "naturalness": 0.0,
+        "constraint_fit": 0.25,
+        "reference_fit": -0.2813,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [
+        "clarity",
+        "constraint_fit"
+      ],
+      "weaker_aspects": [
+        "relevance",
+        "reference_fit"
+      ],
+      "baseline_tweets": "When discussing a failed product experiment, leaders should highlight assumptions tested and outcomes learned, fostering an open conversation about potential improvements.\n— Reflective on Product Leaders\n\nTeams often shy away from defensive post-mortems. Instead of avoiding blame, leading with what they tried can help rebuild trust and set a constructive tone for moving forward.\n— Reflective on Product Leaders",
+      "optimized_tweets": "We recently faced a product experiment that didn't pan out as expected. Our team quickly realized it was essential to unpack what we learned so others could see we weren’t just deflecting.\n\nTeams often struggle when discussing failure, but naming assumptions and learning points clearly helps validate their approach and builds credibility.",
+      "baseline_notes": [
+        "The output returned 4 draft(s) even though 2 was requested.",
+        "The draft resembles the bad examples more than it should."
+      ],
+      "optimized_notes": [
+        "The draft does not strongly reflect the requested topic.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The draft falls short of the specificity bar in the scoring rubric.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ]
+    },
+    {
+      "topic": "Why user-facing AI features need better empty states",
+      "baseline_score": 0.7272,
+      "optimized_score": 0.8241,
+      "score_delta": 0.0969,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.2964,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [
+        "relevance"
+      ],
+      "weaker_aspects": [],
+      "baseline_tweets": "When designing product features like empty states, remember that users often struggle to know where to begin. This is why focusing on clarity and empathy can significantly improve user experience.",
+      "optimized_tweets": "Facing user-facing AI features often fall flat because designers fail to consider the emotional weight of empty states. Product designers should prioritize crafting better ones.",
+      "baseline_notes": [
+        "The draft needs more concrete specificity to match the quality criteria.",
+        "The opening does not yet match the requested hook style strongly enough.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
+      ],
+      "optimized_notes": [
+        "The opening does not yet match the requested hook style strongly enough."
+      ]
+    },
+    {
+      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
+      "baseline_score": 0.7891,
+      "optimized_score": 0.7774,
+      "score_delta": -0.0117,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": -0.077,
+        "relevance": 0.0,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.0,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [],
+      "weaker_aspects": [
+        "clarity"
+      ],
+      "baseline_tweets": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan? Kritik dan pujian sama-sama bisa, tapi jika hanya salah satu, keputusan pasti ditentukan oleh pesona.",
+      "optimized_tweets": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan? Kritik ke aspek profesional ini saja.",
+      "baseline_notes": [
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ],
+      "optimized_notes": [
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
+      ]
+    },
+    {
+      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
+      "baseline_score": 0.7182,
+      "optimized_score": 0.6766,
+      "score_delta": -0.0416,
+      "aspect_delta": {
+        "hook": 0.0,
+        "clarity": 0.0,
+        "relevance": 0.1583,
+        "naturalness": 0.0,
+        "constraint_fit": -0.425,
+        "reference_fit": 0.075,
         "avoidance": 0.0
       },
       "improved_aspects": [
         "relevance",
         "reference_fit"
       ],
-      "weaker_aspects": [],
-      "baseline_tweets": "1. By reusing webinar transcripts, founders can avoid redundancy while sharing valuable insights. For example, extract an impactful quote or a common mistake to highlight in your posts.\n2. Don't just summarize; pick moments that engage readers. Use these for Twitter feeds instead of the main stage to maintain interest and authenticity.",
-      "optimized_tweets": "1. By reusing a webinar transcript, founders can cut down on repetition by pulling out key moments like strong quotes, customer questions, and frameworks into engaging feed content instead of live-stage posts.\n2. To reuse effectively, focus on one standout moment from your webinar — whether it’s a memorable quote or a helpful framework — then craft a short, tweetable version that piques interest without feeling redundant.",
-      "baseline_notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ],
-      "optimized_notes": [
-        "The draft needs more concrete specificity to match the quality criteria."
-      ]
-    },
-    {
-      "topic": "How product teams should talk about failed experiments without sounding defensive",
-      "baseline_score": 0.8196,
-      "optimized_score": 0.738,
-      "score_delta": -0.0816,
-      "aspect_delta": {
-        "hook": -0.173,
-        "clarity": -0.0385,
-        "relevance": -0.325,
-        "naturalness": 0.0,
-        "constraint_fit": 0.0,
-        "reference_fit": 0.2063,
-        "avoidance": 0.0
-      },
-      "improved_aspects": [
-        "reference_fit"
-      ],
       "weaker_aspects": [
-        "hook",
-        "clarity",
-        "relevance"
+        "constraint_fit"
       ],
-      "baseline_tweets": "1. In product leadership, we often focus on successes. But what if your experiment didn’t work out? Here’s how to discuss failures constructively: name the assumption, evidence, and next steps clearly.\n2. When sharing failed experiments, be specific about why things went wrong. This approach shifts from defense to learning, making your team sound more credible and forward-looking.",
-      "optimized_tweets": "1. In a recent experiment that missed its goal, we focused on what we learned. It’s not about defending; it’s about demonstrating quality thinking.\n\n2. When discussing failed experiments, be direct: name assumptions, evidence, and the next steps. This keeps your message clear and credible.",
+      "baseline_tweets": "Mengubah insight meeting internal tidak harus jadi teka-teki rahasia. Intinya adalah mampu merangkum pelajaran yang bisa dilakukan oleh banyak orang.\nPahami bagaimana membuat data dari keputusan tim menjadi pembelajaran umum dan relevan untuk audiens luar.",
+      "optimized_tweets": "Mengubah insight meeting internal jadi konten publik bisa lebih mudah kalau kamu fokus ke apa pelajaran utama dan bagaimana mereka bisa membantu pengguna, bukan detail teknis. #contentstrategyid\n\nDalam meeting internal, seringkali kita terlalu sibuk mencari solusi atau jawaban langsung. Coba lakukan sebaliknya: fokus pada apa yang bisa diambil pelajaran dan bagaimana aspek publik akan berinteraksi dengan informasi itu. #contentstrategyid",
       "baseline_notes": [
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
-      ],
-      "optimized_notes": [
-        "The draft does not strongly reflect the requested topic.",
         "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
-      ]
-    },
-    {
-      "topic": "Why user-facing AI features need better empty states",
-      "baseline_score": 0.7565,
-      "optimized_score": 0.77,
-      "score_delta": 0.0135,
-      "aspect_delta": {
-        "hook": -0.072,
-        "clarity": 0.1353,
-        "relevance": -0.3358,
-        "naturalness": 0.0,
-        "constraint_fit": 0.4833,
-        "reference_fit": 0.0437,
-        "avoidance": 0.0
-      },
-      "improved_aspects": [
-        "clarity",
-        "constraint_fit",
-        "reference_fit"
+        "The opening does not yet match the requested hook style strongly enough.",
+        "The draft falls short of the audience-fit bar in the scoring rubric."
       ],
-      "weaker_aspects": [
-        "hook",
-        "relevance"
-      ],
-      "baseline_tweets": "As product designers, we often overlook the importance of AI empty states. They serve as a first point of interaction, guiding users through the system without overwhelming them with too much information upfront.\n\nUnderstanding how to craft effective empty states is crucial for creating intuitive and user-friendly interfaces. Empty states should be designed to teach users about what they can achieve next, offering examples and hints that reduce anxiety when exploring new features.\n\nBy focusing on crafting meaningful empty states, we empower users to make the most of their interactions with our AI features. This not only enhances overall usability but also builds trust in our product, knowing that even at the start, there's always a way forward.",
-      "optimized_tweets": "Empty states in AI UX are critical because they teach users what to ask next. A good empty state shows examples and lowers anxiety about starting wrong.",
-      "baseline_notes": [
+      "optimized_notes": [
         "Some drafts exceed the requested character limit.",
-        "The output returned 3 draft(s) even though 1 was requested."
-      ],
-      "optimized_notes": [
-        "The draft does not strongly reflect the requested topic.",
+        "Some drafts use more than two hashtags.",
+        "Hashtags appear even though they were disabled.",
         "The draft could speak more directly to the target audience.",
-        "The draft needs more concrete specificity to match the quality criteria."
+        "The draft breaks the desired structure by using hashtags when the structure says not to.",
+        "The opening does not yet match the requested hook style strongly enough."
       ]
     },
     {
-      "topic": "Mengapa konten yang terlalu aman sering tidak meninggalkan kesan",
-      "baseline_score": 0.7558,
-      "optimized_score": 0.878,
-      "score_delta": 0.1222,
+      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
+      "baseline_score": 0.8135,
+      "optimized_score": 0.8117,
+      "score_delta": -0.0018,
       "aspect_delta": {
         "hook": -0.07,
-        "clarity": 0.077,
-        "relevance": 0.475,
+        "clarity": 0.0,
+        "relevance": 0.0,
         "naturalness": 0.0,
-        "constraint_fit": 0.0,
-        "reference_fit": 0.275,
+        "constraint_fit": 0.35,
+        "reference_fit": -0.0437,
         "avoidance": 0.0
       },
       "improved_aspects": [
-        "clarity",
+        "constraint_fit"
+      ],
+      "weaker_aspects": [
+        "hook",
+        "reference_fit"
+      ],
+      "baseline_tweets": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja? Kita selalu berfokus pada apa yang kita capai, tetapi lupa bagaimana kita sampai di sana. Jadi, buatlah keputusan dan pilihannya lebih publik agar orang lain belajar.",
+      "optimized_tweets": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja. Sebagai pembangun, kita tahu betul bagaimana pentingnya transparansi dalam proyek-proyek besar.",
+      "baseline_notes": [
+        "Some drafts exceed the requested character limit.",
+        "The draft could speak more directly to the target audience."
+      ],
+      "optimized_notes": [
+        "The draft could speak more directly to the target audience.",
+        "The opening does not yet match the requested hook style strongly enough."
+      ]
+    },
+    {
+      "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
+      "baseline_score": 0.8246,
+      "optimized_score": 0.8364,
+      "score_delta": 0.0118,
+      "aspect_delta": {
+        "hook": -0.035,
+        "clarity": 0.0,
+        "relevance": 0.1333,
+        "naturalness": 0.0,
+        "constraint_fit": 0.0,
+        "reference_fit": 0.2624,
+        "avoidance": 0.0
+      },
+      "improved_aspects": [
         "relevance",
         "reference_fit"
       ],
       "weaker_aspects": [
         "hook"
       ],
-      "baseline_tweets": "Jangan terlalu aman dalam membuat konten, karena itu bisa bikin penonton cepat lupa. Loyal? Tentu saja. Tapi cobalah membedakan dirimu dengan menyajikan sudut pandang yang unik dan jelas.",
-      "optimized_tweets": "Konten yang terlalu aman sering tidak membuat personal brands Indonesia diingat. Mereka mudah disetujui, tapi cepat dilupakan. Berani punya sudut pandang jelas untuk meninggalkan kesan.",
-      "baseline_notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "optimized_notes": []
-    },
-    {
-      "topic": "Cara mengubah insight meeting internal jadi konten yang relevan untuk audiens luar",
-      "baseline_score": 0.8173,
-      "optimized_score": 0.8354,
-      "score_delta": 0.0181,
-      "aspect_delta": {
-        "hook": 0.035,
-        "clarity": 0.0,
-        "relevance": 0.0,
-        "naturalness": 0.0,
-        "constraint_fit": 0.0,
-        "reference_fit": 0.1188,
-        "avoidance": 0.0
-      },
-      "improved_aspects": [
-        "hook",
-        "reference_fit"
-      ],
-      "weaker_aspects": [],
-      "baseline_tweets": "1. Mengubah insight meeting internal menjadi konten yang relevan untuk audiens luar: pertimbangkan apa pelajaran dan pembelajaran praktisnya bagi mereka.\n\n2. Jika ada keputusan penting atau pertanyaan besar dalam meeting, coba bingkainya sebagai kasus studi atau pengalaman lain yang bisa diadaptasi menjadi konten publik.",
-      "optimized_tweets": "1. Bagaimana kita bisa mengubah insight dari meeting internal menjadi konten publik? Langkah pertama adalah membuang detail yang sensitif dan fokus pada pelajaran umum.\n2. Jika keputusan, trade-off, atau pertanyaan dalam meeting internal memiliki makna yang lebih luas, mereka dapat menjadi sumber inspirasi untuk konten publik.",
-      "baseline_notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "optimized_notes": [
-        "The draft could speak more directly to the target audience."
-      ]
-    },
-    {
-      "topic": "Mengapa konten yang jujur soal proses sering lebih dipercaya daripada hasil akhir saja",
-      "baseline_score": 0.7855,
-      "optimized_score": 0.675,
-      "score_delta": -0.1105,
-      "aspect_delta": {
-        "hook": 0.0,
-        "clarity": -0.077,
-        "relevance": -0.375,
-        "naturalness": 0.0,
-        "constraint_fit": 0.0,
-        "reference_fit": -0.2313,
-        "avoidance": 0.0
-      },
-      "improved_aspects": [],
-      "weaker_aspects": [
-        "clarity",
-        "relevance",
-        "reference_fit"
-      ],
-      "baseline_tweets": "Konten yang jujur soal proses sering membuktikan kejujuranmu. Ini bukan berarti hasil akhirmu tak boleh dipercaya, tetapi perjalanan bagaimana kamu mencapainya, punya nilai tersendiri dalam diri pembaca.",
-      "optimized_tweets": "Proses adalah cermin dari kecerdasan. Menceritakan pengalamannya bukan sekadar pamer hasil akhir saja.",
-      "baseline_notes": [
-        "The draft could speak more directly to the target audience."
-      ],
-      "optimized_notes": [
-        "The draft does not strongly reflect the requested topic.",
-        "The draft could speak more directly to the target audience.",
-        "The draft does not yet reflect the level of specificity shown in the reference posts."
-      ]
-    },
-    {
-      "topic": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif",
-      "baseline_score": 0.8378,
-      "optimized_score": 0.8115,
-      "score_delta": -0.0263,
-      "aspect_delta": {
-        "hook": 0.035,
-        "clarity": -0.0385,
-        "relevance": -0.2417,
-        "naturalness": 0.0,
-        "constraint_fit": 0.0,
-        "reference_fit": 0.2187,
-        "avoidance": 0.0
-      },
-      "improved_aspects": [
-        "hook",
-        "reference_fit"
-      ],
-      "weaker_aspects": [
-        "clarity",
-        "relevance"
-      ],
-      "baseline_tweets": "1. Dalam menjelaskan trade-off produk ke audiens product team Indonesia, jujur saja mengungkapkan prioritas dan konsekuensi adalah kunci.\n2. Terdengar defensif jika Anda terlalu memfokuskan pada alasan mengapa pilihan tertentu yang dipilih. Jadikan penjelasan itu lebih inti seputar kebutuhan pengguna dan dampaknya.",
-      "optimized_tweets": "1. Produk kita sekarang membutuhkan penyesuaian untuk masalah yang baru muncul. Jelaskan trade-off ini dengan jujur dan tenang, tanpa terdengar defensif. \n\n2. Pilihannya tidak sempurna, tapi setidaknya harus bisa menjawab pertanyaan fundamental: kenapa ini adalah pilihan yang lebih baik untuk mayoritas pengguna?",
+      "baseline_tweets": "Mengelola trade-off dalam produk? Jelaskan dengan jujur dan memberikan konsekuensi. Ini lebih kuat dari berargumen.\nPahami keputusan product Anda, kemudian jelaskannya tanpa terdengar defensif untuk menghibur audiens Indonesia.",
+      "optimized_tweets": "Cara menjelaskan trade-off produk ke audiens tanpa terdengar defensif: Jelaskan pilihan yang diambil, kenapa itu masuk akal untuk mayoritas user, dan apa konsekuensinya.\n\nMenguji trade-off dengan jujur bisa membantu team lebih percaya diri dalam membuat keputusan produk.",
       "baseline_notes": [],
       "optimized_notes": [
-        "The draft could speak more directly to the target audience."
+        "The draft could speak more directly to the target audience.",
+        "The opening does not yet match the requested hook style strongly enough."
       ]
     },
     {
       "topic": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi",
-      "baseline_score": 0.8364,
-      "optimized_score": 0.8698,
-      "score_delta": 0.0334,
+      "baseline_score": 0.8314,
+      "optimized_score": 0.7991,
+      "score_delta": -0.0323,
       "aspect_delta": {
         "hook": 0.0,
-        "clarity": 0.077,
-        "relevance": 0.0833,
+        "clarity": 0.0,
+        "relevance": 0.2333,
         "naturalness": 0.0,
         "constraint_fit": 0.0,
-        "reference_fit": 0.0437,
+        "reference_fit": -0.3687,
         "avoidance": 0.0
       },
       "improved_aspects": [
-        "clarity",
-        "relevance",
+        "relevance"
+      ],
+      "weaker_aspects": [
         "reference_fit"
       ],
-      "weaker_aspects": [],
-      "baseline_tweets": "Mengapa konten edukasi perlu punya contoh bukan hanya definisi? Pasangan contoh memberikan nuansa yang lebih real dan mudah dipahami. #ContentTips",
-      "optimized_tweets": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi? Dalam dunia pembelajaran online, penjelasan nyata dan kasih akan lebih menarik dan mudah dipahami. #ContentEducation #EDUCREATORS",
+      "baseline_tweets": "Mengapa konten edukasi perlu punya contoh? Jangan hanya definisi. Tunjukkan situasi nyata supaya audiens paham langsung. #ContentEducation",
+      "optimized_tweets": "Mengapa konten edukasi perlu punya contoh, bukan hanya definisi? Tanyakan ke pengguna. #ContentEducation #PendidikanIndonesia",
       "baseline_notes": [
         "The draft could speak more directly to the target audience."
       ],
       "optimized_notes": [
-        "The draft could speak more directly to the target audience."
+        "The draft could speak more directly to the target audience.",
+        "The draft does not yet reflect the level of specificity shown in the reference posts.",
+        "The draft falls short of the specificity bar in the scoring rubric."
       ]
     }
   ],
