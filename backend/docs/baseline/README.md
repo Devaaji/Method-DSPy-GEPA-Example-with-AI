@@ -54,7 +54,7 @@ Bagian pentingnya:
 
 Kalau mau tahu baseline dihitung di mana, mulai dari file ini.
 
-### [twitter_dspy_program.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter_dspy_program.py:1)
+### [twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 
 Ini definisi program DSPy yang dipakai sebagai baseline.
 
@@ -224,7 +224,7 @@ Jadi pembandingnya apple-to-apple.
 Kalau mau paham baseline tanpa bingung, baca urut begini:
 
 1. [optimize_gepa.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/scripts/optimize_gepa.py:1)
-2. [twitter_dspy_program.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter_dspy_program.py:1)
+2. [twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 3. [gepa_examples.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/datasets/gepa_examples.py:1)
 4. [scoring/README.md](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/scoring/README.md:1)
 5. [optimized_prompt.json](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/optimized_prompt.json:1)

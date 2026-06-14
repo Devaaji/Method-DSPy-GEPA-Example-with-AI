@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.prompts.twitter_prompt import load_optimized_prompt_data
+from app.prompts.twitter import load_optimized_prompt_data
 
 router = APIRouter(prefix="/api/optimizer", tags=["optimizer"])
 

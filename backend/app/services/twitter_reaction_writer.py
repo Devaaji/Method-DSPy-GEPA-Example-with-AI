@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 from app.models.twitter import TwitterGenerateRequest
-from app.prompts.twitter_prompt import topic_is_tech_related
+from app.prompts.twitter import topic_is_tech_related
 
 REACTION_MARKERS = (
     "agak",

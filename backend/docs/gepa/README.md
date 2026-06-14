@@ -65,7 +65,7 @@ Bagian pentingnya:
 
 Kalau mau tahu GEPA dijalankan di mana, lihat file ini.
 
-### [twitter_dspy_program.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter_dspy_program.py:1)
+### [twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 
 Ini program DSPy yang akan dioptimasi oleh GEPA.
 
@@ -244,7 +244,7 @@ Tanpa step 5, kamu tidak punya proses improve.
 Kalau mau paham step ini, baca urut begini:
 
 1. [optimize_gepa.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/scripts/optimize_gepa.py:1)
-2. [twitter_dspy_program.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter_dspy_program.py:1)
+2. [twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 3. [gepa_examples.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/datasets/gepa_examples.py:1)
 4. [scoring/README.md](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/scoring/README.md:1)
 

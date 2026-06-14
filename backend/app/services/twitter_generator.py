@@ -6,7 +6,7 @@ from openai.types.chat import ChatCompletionMessageParam
 from app.core.config import Settings
 from app.core.logging import get_logger
 from app.models.twitter import TwitterGenerateRequest
-from app.prompts.twitter_prompt import (
+from app.prompts.twitter import (
     build_rewrite_system_prompt,
     build_rewrite_user_prompt,
     build_system_prompt,

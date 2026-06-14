@@ -60,8 +60,9 @@ kimi-twitter-sse-dspy-gepa/
 │   │   ├── models/
 │   │   │   └── twitter.py         # Pydantic request/response models
 │   │   ├── prompts/
-│   │   │   ├── twitter_prompt.py  # runtime prompt builder
-│   │   │   └── twitter_dspy_program.py # DSPy signature/module/metric
+│   │   │   ├── twitter/
+│   │   │   │   ├── runtime.py     # runtime prompt builder
+│   │   │   │   └── dspy.py        # DSPy signature/module/metric
 │   │   ├── routers/
 │   │   │   ├── health.py          # health endpoint
 │   │   │   └── twitter.py         # session + SSE endpoints
@@ -382,13 +383,13 @@ backend/.venv/Scripts/python.exe backend/scripts/optimize_gepa.py
 The script saves:
 
 ```txt
-backend/app/prompts/optimized_prompt.json
+backend/app/prompts/twitter/.generated/twitter_optimized_prompt.json
 ```
 
 Runtime automatically loads this file through:
 
 ```txt
-backend/app/prompts/twitter_prompt.py
+backend/app/prompts/twitter/runtime.py
 ```
 
 Important: GEPA can call the LLM multiple times, so it may consume API credits.
@@ -400,13 +401,13 @@ Important: GEPA can call the LLM multiple times, so it may consume API credits.
 Runtime prompt:
 
 ```txt
-backend/app/prompts/twitter_prompt.py
+backend/app/prompts/twitter/runtime.py
 ```
 
 DSPy program:
 
 ```txt
-backend/app/prompts/twitter_dspy_program.py
+backend/app/prompts/twitter/dspy.py
 ```
 
 Optional GEPA script:

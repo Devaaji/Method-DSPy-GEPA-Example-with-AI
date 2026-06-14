@@ -44,8 +44,8 @@ cd backend
 
 This uses the same evaluator as GEPA in:
 
-- [backend/app/prompts/scoring.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/scoring.py:1)
-- [backend/app/prompts/twitter_dspy_program.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter_dspy_program.py:1)
+- [backend/app/prompts/scoring/evaluator.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/scoring/evaluator.py:1)
+- [backend/app/prompts/twitter/dspy.py](/Users/devaajisaputra/Documents/Personal/Method-DSPy-GEPA-Example-with-AI/backend/app/prompts/twitter/dspy.py:1)
 
 The output includes:
 

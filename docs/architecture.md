@@ -30,7 +30,7 @@ FastAPI router -> TwitterContentGenerator -> KimiClient -> stream tokens -> SSE
 The optimization path is:
 
 ```txt
-scripts/optimize_gepa.py -> DSPy TwitterContentProgram -> GEPA -> optimized_prompt.json
+scripts/optimize_gepa.py -> DSPy TwitterStyleProgram -> GEPA -> twitter/.generated/twitter_optimized_prompt.json
 ```
 
-The runtime prompt loader checks if `optimized_prompt.json` exists. If yes, it uses that prompt. If not, it uses the default prompt.
+The runtime prompt loader checks for `twitter/.generated/twitter_optimized_prompt.json`. If present, it uses the optimized style artifact. If not, it falls back to the default prompt composition.

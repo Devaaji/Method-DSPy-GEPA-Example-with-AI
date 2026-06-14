@@ -4,10 +4,10 @@ Run this only after the normal SSE app is working.
 It will call your configured provider model several times, so it may consume credits.
 
 Output:
-- app/prompts/optimized_prompt.json
+- app/prompts/twitter/.generated/twitter_optimized_prompt.json
 
 Runtime behavior:
-- app/prompts/twitter_prompt.py automatically loads optimized_prompt.json if present.
+- app/prompts/twitter/runtime.py automatically loads optimized style guidance if present.
 """
 
 from __future__ import annotations
@@ -22,7 +22,6 @@ from typing import Any
 from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_PATH = PROJECT_ROOT / "app" / "prompts" / "optimized_prompt.json"
 sys.path.append(str(PROJECT_ROOT))
 
 load_dotenv(PROJECT_ROOT / ".env")
@@ -35,11 +34,15 @@ except Exception as exc:
         f"Original error: {exc}"
     )
 
-from app.prompts.twitter_dspy_program import TwitterContentProgram, twitter_quality_metric
+from app.prompts.twitter.dspy import TwitterStyleProgram, twitter_quality_metric
 from app.prompts.scoring import evaluate_twitter_output
 from app.prompts.datasets.gepa_examples import build_examples, build_train_val_examples
-from app.prompts.twitter_prompt import build_default_system_prompt
+from app.prompts.twitter import build_default_style_prompt, build_default_system_prompt, build_system_prompt
+from app.prompts.twitter.constants import OPTIMIZED_PROMPT_FILE
+from app.prompts.twitter.files import load_generation_prompt_files
 from app.core.config import get_settings
+
+OUTPUT_PATH = OPTIMIZED_PROMPT_FILE
 
 
 def resolve_dspy_model_name(model: str) -> str:
@@ -130,32 +133,36 @@ def build_preview_comparison(
 
 
 def build_runtime_prompt() -> str:
-    return """
-You are an optimized X/Twitter content generator for founders, marketers, and software builders.
-Prioritize specificity, usefulness, and clarity. Write natural posts that sound human, not generic.
-Lead with one sharp idea, lesson, tension, or contrarian observation.
-Make each draft feel written for the requested audience.
-For every request, produce the requested number of standalone tweet drafts.
-Output exactly the requested number of drafts. No extra drafts.
-Keep each draft under the requested character limit.
-Use the requested tone and language.
-If hashtags are enabled, use at most two and only when useful.
-Avoid generic marketing phrasing like "game-changing", "revolutionary", or "unlock the power".
-Return only final tweet drafts. Do not include reasoning or commentary.
-""".strip()
+    return build_default_system_prompt()
 
 
 def extract_signature_instructions(program: Any) -> str | None:
-    try:
-        instructions = getattr(program.generate.predict.signature, "instructions", None)
-    except Exception:
+    signature = getattr(getattr(program, "generate", None), "signature", None)
+    if signature is None:
+        try:
+            signature = getattr(program.generate.predict, "signature", None)
+        except Exception:
+            signature = None
+
+    if signature is None:
         return None
+
+    instructions = getattr(signature, "instructions", None)
 
     if isinstance(instructions, str):
         normalized = instructions.strip()
         return normalized or None
 
     return None
+
+
+def build_program() -> Any:
+    prompt_files = load_generation_prompt_files()
+    return TwitterStyleProgram(
+        seed_style=prompt_files["style"],
+        base_system_prompt=prompt_files["system"],
+        examples_prompt=prompt_files["examples"],
+    )
 
 
 def summarize_prompt_shift(
@@ -230,22 +237,24 @@ def main():
     print(f"==> Max metric calls: {max_metric_calls}")
     print(f"==> Train examples: {len(trainset)} | Validation examples: {len(valset)}")
     print("==> Running baseline preview...")
-    baseline_program = TwitterContentProgram()
+    baseline_program = build_program()
     baseline_score, baseline_previews = evaluate_program(baseline_program, valset)
     print(f"==> Baseline validation score: {baseline_score}")
     print("==> Running DSPy GEPA optimization...")
     optimized_program = optimizer.compile(
-        student=TwitterContentProgram(),
+        student=build_program(),
         trainset=trainset,
         valset=valset,
     )
     optimized_score, optimized_previews = evaluate_program(optimized_program, valset)
     print(f"==> Optimized validation score: {optimized_score}")
     comparisons = build_preview_comparison(baseline_previews, optimized_previews)
-    baseline_runtime_prompt = build_default_system_prompt()
-    optimized_runtime_prompt = build_runtime_prompt()
+    baseline_style_prompt = build_default_style_prompt()
+    optimized_style_prompt = extract_signature_instructions(optimized_program) or baseline_style_prompt
+    baseline_runtime_prompt = build_runtime_prompt()
+    optimized_runtime_prompt = build_system_prompt(style_override=optimized_style_prompt)
     baseline_dspy_instructions = extract_signature_instructions(baseline_program)
-    optimized_dspy_instructions = extract_signature_instructions(optimized_program)
+    optimized_dspy_instructions = optimized_style_prompt
     prompt_change_summary = summarize_prompt_shift(
         baseline_runtime_prompt,
         optimized_runtime_prompt,
@@ -274,9 +283,12 @@ def main():
             "avoidance": 0.07,
         },
         "system_prompt": optimized_runtime_prompt,
+        "style_prompt": optimized_style_prompt,
         "prompt_versions": {
             "baseline_runtime_prompt": baseline_runtime_prompt,
             "optimized_runtime_prompt": optimized_runtime_prompt,
+            "baseline_style_prompt": baseline_style_prompt,
+            "optimized_style_prompt": optimized_style_prompt,
             "baseline_dspy_instructions": baseline_dspy_instructions,
             "optimized_dspy_instructions": optimized_dspy_instructions,
         },
@@ -286,15 +298,16 @@ def main():
         "optimized_preview": optimized_previews,
         "comparison_preview": comparisons,
         "how_to_use": [
-            "Runtime will automatically load this file through app/prompts/twitter_prompt.py.",
+            "Runtime will automatically load the optimized style prompt through app/prompts/twitter/runtime.py.",
             "Check backend logs for prompt_selected mode=optimized to confirm it is active.",
             "Compare baseline_preview and optimized_preview to study how GEPA changed outputs.",
             "Replace the starter dataset with your own examples to make optimization meaningful.",
         ],
-        "note": "This artifact is educational: DSPy optimizes the program internally, while runtime still consumes a stable prompt artifact.",
+        "note": "This artifact is educational: DSPy optimizes only the style layer, while runtime composes system + examples + style into a stable prompt.",
         "how_to_judge": [
             "Check baseline_runtime_prompt vs optimized_runtime_prompt to see what text the app used before and after optimization.",
-            "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy program instructions.",
+            "Check baseline_style_prompt vs optimized_style_prompt to see exactly how GEPA changed the style layer.",
+            "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy style instructions.",
             "If optimized_validation_score is higher, the new version performed better on the validation examples in this run.",
             "Read aspect scores and notes to understand whether the gain comes from hook, clarity, relevance, naturalness, or constraint fit.",
             "Check whether reference_fit and avoidance improved, because those now capture style guidance from the dataset.",
@@ -311,6 +324,7 @@ def main():
         },
     }
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(
         json.dumps(
             artifact,
