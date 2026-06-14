@@ -30,6 +30,9 @@ if dspy is not None:
         count = dspy.InputField(desc="Number of tweet drafts to create.")
         max_chars = dspy.InputField(desc="Maximum characters per tweet.")
         include_hashtags = dspy.InputField(desc="Whether hashtags are allowed.")
+        reference_posts = dspy.InputField(desc="A few short reference posts that show the desired level of specificity and voice.")
+        quality_criteria = dspy.InputField(desc="Quality checklist for what a strong output should do.")
+        avoid = dspy.InputField(desc="Phrases, patterns, or mistakes the output should avoid.")
         tweets = dspy.OutputField(desc="Final tweet drafts only, numbered one per line.")
 
 
@@ -47,6 +50,9 @@ if dspy is not None:
             count: int,
             max_chars: int,
             include_hashtags: bool,
+            reference_posts: list[str],
+            quality_criteria: list[str],
+            avoid: list[str],
         ):
             return self.generate(
                 topic=topic,
@@ -56,6 +62,9 @@ if dspy is not None:
                 count=str(count),
                 max_chars=str(max_chars),
                 include_hashtags=str(include_hashtags),
+                reference_posts="\n".join(f"- {item}" for item in reference_posts),
+                quality_criteria="\n".join(f"- {item}" for item in quality_criteria),
+                avoid="\n".join(f"- {item}" for item in avoid),
             )
 
 

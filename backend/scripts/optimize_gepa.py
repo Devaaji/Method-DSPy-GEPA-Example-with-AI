@@ -55,6 +55,9 @@ def example_inputs(example: Any) -> dict[str, Any]:
         "count": int(getattr(example, "count")),
         "max_chars": int(getattr(example, "max_chars")),
         "include_hashtags": bool(getattr(example, "include_hashtags")),
+        "reference_posts": list(getattr(example, "reference_posts", []) or []),
+        "quality_criteria": list(getattr(example, "quality_criteria", []) or []),
+        "avoid": list(getattr(example, "avoid", []) or []),
     }
 
 
@@ -252,11 +255,13 @@ def main():
         "optimized_validation_score": optimized_score,
         "score_delta": round(optimized_score - baseline_score, 4),
         "score_weights": {
-            "relevance": 0.24,
-            "hook": 0.22,
-            "clarity": 0.20,
-            "naturalness": 0.18,
-            "constraint_fit": 0.16,
+            "relevance": 0.20,
+            "hook": 0.18,
+            "clarity": 0.16,
+            "naturalness": 0.15,
+            "constraint_fit": 0.14,
+            "reference_fit": 0.10,
+            "avoidance": 0.07,
         },
         "system_prompt": optimized_runtime_prompt,
         "prompt_versions": {
@@ -282,6 +287,7 @@ def main():
             "Check baseline_dspy_instructions vs optimized_dspy_instructions to see whether GEPA changed the DSPy program instructions.",
             "If optimized_validation_score is higher, the new version performed better on the validation examples in this run.",
             "Read aspect scores and notes to understand whether the gain comes from hook, clarity, relevance, naturalness, or constraint fit.",
+            "Check whether reference_fit and avoidance improved, because those now capture style guidance from the dataset.",
             "A prompt can score lower overall even if one aspect improved, so judge by both total score and aspect-level tradeoffs.",
         ],
         "scoring_guide": {
@@ -290,6 +296,8 @@ def main():
             "relevance": "How well the draft stays on-topic and speaks to the audience.",
             "naturalness": "How human and non-generic the wording feels.",
             "constraint_fit": "How well the draft obeys tweet length and hashtag rules.",
+            "reference_fit": "How closely the draft matches the specificity and voice shown in the dataset reference posts.",
+            "avoidance": "How well the draft avoids banned patterns like hype, filler, or overused formatting.",
         },
     }
 
